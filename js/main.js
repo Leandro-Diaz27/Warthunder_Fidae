@@ -17,14 +17,15 @@ const NACIONES = {
 };
 
 // ── SUPABASE CLIENT ──
-let supabase = null;
+let supabaseClient = null; // Cambiamos el nombre para evitar el choque
 
 function initSupabase() {
   try {
     const { createClient } = window.supabase;
-    supabase = createClient(CONFIG.SUPABASE_URL, CONFIG.SUPABASE_ANON_KEY);
+    // Usamos el nuevo nombre aquí también
+    supabaseClient = createClient(CONFIG.SUPABASE_URL, CONFIG.SUPABASE_ANON_KEY);
   } catch (e) {
-    console.warn("Supabase no inicializado. Modo demo activo.", e);
+    console.warn("Supabase no inicializado", e);
   }
 }
 
