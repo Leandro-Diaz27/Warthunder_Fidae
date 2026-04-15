@@ -1,0 +1,22 @@
+// ═══════════════════════════════════════════
+//   FIDAE × WAR THUNDER — CONFIG
+//   Edita este archivo con tus datos reales
+// ═══════════════════════════════════════════
+
+const CONFIG = {
+  // ── SUPABASE ──
+  // Reemplaza con tu URL y ANON KEY de Supabase
+  SUPABASE_URL: "https://TU_PROYECTO.supabase.co",
+  SUPABASE_ANON_KEY: "TU_ANON_KEY_AQUI",
+
+  // ── CLAN ──
+  CLAN_NAME: "NOMBRE_CLAN",   // <-- Pon el nombre de tu clan aquí
+
+  // ── REDES SOCIALES ──
+  TIKTOK_URL:    "https://tiktok.com/@tucuenta",
+  INSTAGRAM_URL: "https://instagram.com/tucuenta",
+  YOUTUBE_URL:   "https://youtube.com/@tucuenta",
+
+  // ── EVENTO ──
+  HORAS_EVENTO: 48,           // Duración total del evento
+};

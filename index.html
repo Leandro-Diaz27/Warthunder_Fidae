@@ -1,0 +1,382 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>FIDAE War Thunder</title>
+  <meta name="description" content="El primer evento FIDAE dentro de War Thunder. Regístrate, elige tu avión y tu nación, y sé parte de la historia." />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Barlow+Condensed:wght@300;400;600;700&family=Barlow:wght@300;400;500&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="/css/style.css" />
+  <link rel="icon" href="assets/favicon.webp" />
+</head>
+<body>
+
+  <!-- ░░ NOISE OVERLAY ░░ -->
+  <div class="noise-overlay"></div>
+
+  <!-- ░░ VIDEO BACKGROUND ░░ -->
+  <div class="video-bg" id="videoBg">
+    <video autoplay muted loop playsinline id="bgVideo">
+      <!-- Reemplaza este src con tu video de War Thunder -->
+      <source src="assets/WAR THUNDER.mp4" type="video/mp4" />
+    </video>
+    <div class="video-overlay"></div>
+  </div>
+
+  <!-- ░░ NAV ░░ -->
+  <nav class="nav" id="nav">
+    <div class="nav-inner">
+      <div class="nav-logo">
+        <span class="logo-fidae">FIDAE</span>
+        <span class="logo-wt">× WAR THUNDER</span>
+      </div>
+      <ul class="nav-links">
+        <li><a href="#evento">El Evento</a></li>
+        <li><a href="#metricas">Estadísticas</a></li>
+        <li><a href="#participantes">Participantes</a></li>
+        <li><a href="#auspiciadores">Auspiciadores</a></li>
+        <li><a href="#aplicar" class="nav-cta">Aplicar</a></li>
+      </ul>
+      <button class="nav-hamburger" id="hamburger" aria-label="Menu">
+        <span></span><span></span><span></span>
+      </button>
+    </div>
+  </nav>
+
+  <!-- ░░ HERO ░░ -->
+  <header class="hero" id="hero">
+    <div class="hero-content">
+      <div class="hero-badge">
+        <span class="badge-dot"></span>
+        PRIMERA VEZ EN LA HISTORIA DE WAR THUNDER
+      </div>
+      <h1 class="hero-title">
+        <span class="title-line" data-delay="0">FIDAE x WARTHUNDER</span>
+        <span class="title-sub" data-delay="200">FERIA INTERNACIONAL DEL AIRE Y DEL ESPACIO</span>
+        <span class="title-year" data-delay="400">2026</span>
+      </h1>
+      <p class="hero-desc" data-delay="600">
+        Por primera vez en la historia, la Feria Internacional del Aire y del Espacio aterriza en los cielos virtuales de War Thunder.
+        Una experiencia única, irrepetible y épica.
+      </p>
+      <div class="hero-actions" data-delay="800">
+        <a href="#aplicar" class="btn-primary">
+          <span>Aplicar ahora</span>
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+        </a>
+        <a href="#evento" class="btn-ghost">Conoce más</a>
+      </div>
+    </div>
+    <div class="hero-scroll-hint">
+      <span>SCROLL</span>
+      <div class="scroll-line"></div>
+    </div>
+  </header>
+
+  <!-- ░░ TICKER ░░ -->
+  <div class="ticker-wrap">
+    <div class="ticker-track">
+      <span>FIDAE × WAR THUNDER</span>
+      <span>•</span>
+      <span>PRIMERA EDICIÓN</span>
+      <span>•</span>
+      <span>EVENTO AÉREO VIRTUAL</span>
+      <span>•</span>
+      <span>REGISTRA TU AERONAVE</span>
+      <span>•</span>
+      <span>MÚLTIPLES NACIONES</span>
+      <span>•</span>
+      <span>FIDAE × WAR THUNDER</span>
+      <span>•</span>
+      <span>PRIMERA EDICIÓN</span>
+      <span>•</span>
+      <span>EVENTO AÉREO VIRTUAL</span>
+      <span>•</span>
+      <span>REGISTRA TU AERONAVE</span>
+      <span>•</span>
+      <span>MÚLTIPLES NACIONES</span>
+      <span>•</span>
+    </div>
+  </div>
+
+  <!-- ░░ SOBRE EL EVENTO ░░ -->
+  <section class="section-evento" id="evento">
+    <div class="container">
+      <div class="section-header">
+        <span class="section-tag">// 01 — EL EVENTO</span>
+        <h2 class="section-title">Un hito histórico<br/>en los cielos</h2>
+      </div>
+      <div class="evento-grid">
+        <div class="evento-text">
+          <p class="evento-intro">
+            La FIDAE — Feria Internacional del Aire y del Espacio — es el evento aeronáutico más importante de Latinoamérica, celebrado en Santiago de Chile. En 2025, por primera vez en la historia, este icónico evento toma vuelo en el universo de <strong>War Thunder</strong>.
+          </p>
+          <p>
+            Pilotos de todo el mundo podrán representar a su nación, exhibir sus aeronaves y competir en el cielo virtual más realista que existe. Naciones, escuadrillas y leyendas del aire se reunirán en un evento que no se repetirá.
+          </p>
+          <div class="evento-highlights">
+            <div class="highlight-item">
+              <div class="highlight-icon">✦</div>
+              <div>
+                <strong>Exhibición aérea virtual</strong>
+                <span>Muestra tu avión y habilidades de vuelo</span>
+              </div>
+            </div>
+            <div class="highlight-item">
+              <div class="highlight-icon">✦</div>
+              <div>
+                <strong>Representación nacional</strong>
+                <span>Vuela bajo la bandera de tu nación</span>
+              </div>
+            </div>
+            <div class="highlight-item">
+              <div class="highlight-icon">✦</div>
+              <div>
+                <strong>Comunidad global</strong>
+                <span>Pilotos de múltiples países y clanes</span>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="evento-visual">
+          <div class="visual-card">
+            <div class="visual-card-inner">
+              <div class="vc-label">EDICIÓN</div>
+              <div class="vc-number">I</div>
+              <div class="vc-text">PRIMERA EDICIÓN<br/>FIDAE en War Thunder</div>
+            </div>
+          </div>
+          <div class="visual-card-accent"></div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ░░ MÉTRICAS ░░ -->
+  <section class="section-metricas" id="metricas">
+    <div class="metricas-bg-text">STATS</div>
+    <div class="container">
+      <div class="section-header">
+        <span class="section-tag">// 02 — ESTADÍSTICAS EN VIVO</span>
+        <h2 class="section-title">El evento<br/>en números</h2>
+      </div>
+      <div class="metricas-grid" id="metricasGrid">
+        <div class="metrica-card" data-metric="registrados">
+          <div class="metrica-icon">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg>
+          </div>
+          <div class="metrica-num" id="countRegistrados">0</div>
+          <div class="metrica-label">Pilotos Registrados</div>
+          <div class="metrica-bar"><div class="metrica-bar-fill" style="width:0%"></div></div>
+        </div>
+
+        <div class="metrica-card" data-metric="paises">
+          <div class="metrica-icon">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><circle cx="12" cy="12" r="10"/><line x1="2" y1="12" x2="22" y2="12"/><path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"/></svg>
+          </div>
+          <div class="metrica-num" id="countPaises">0</div>
+          <div class="metrica-label">Naciones Representadas</div>
+          <div class="metrica-bar"><div class="metrica-bar-fill" style="width:0%"></div></div>
+        </div>
+
+        <div class="metrica-card" data-metric="aviones">
+          <div class="metrica-icon">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M21 16V8a2 2 0 0 0-1-1.73l-7-4a2 2 0 0 0-2 0l-7 4A2 2 0 0 0 3 8v8a2 2 0 0 0 1 1.73l7 4a2 2 0 0 0 2 0l7-4A2 2 0 0 0 21 16z"/></svg>
+          </div>
+          <div class="metrica-num" id="countAviones">0</div>
+          <div class="metrica-label">Aeronaves Distintas</div>
+          <div class="metrica-bar"><div class="metrica-bar-fill" style="width:0%"></div></div>
+        </div>
+
+        <div class="metrica-card metrica-highlight" data-metric="horas">
+          <div class="metrica-icon">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
+          </div>
+          <div class="metrica-num" id="countHoras">por confirmarse..</div>
+          <div class="metrica-label">Horas de Evento</div>
+          <div class="metrica-sub">Duración total del evento</div>
+        </div>
+      </div>
+
+      <!-- Naciones breakdown -->
+      <div class="naciones-breakdown" id="nacionesBreakdown">
+        <h3 class="breakdown-title">Distribución por Nación</h3>
+        <div class="naciones-list" id="nacionesList">
+          <div class="nacion-loading">Cargando datos...</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ░░ PARTICIPANTES ░░ -->
+  <section class="section-participantes" id="participantes">
+    <div class="container">
+      <div class="section-header">
+        <span class="section-tag">// 03 — PARTICIPANTES</span>
+        <h2 class="section-title">Pilotos<br/>registrados</h2>
+      </div>
+      <div class="tabla-wrap">
+        <table class="tabla-pilotos" id="tablaPilotos">
+          <thead>
+            <tr>
+              <th>#</th>
+              <th>Piloto</th>
+              <th>Nación</th>
+              <th>Aeronave</th>
+              <th>Estado</th>
+            </tr>
+          </thead>
+          <tbody id="tablaBody">
+            <tr><td colspan="5" class="tabla-loading">Cargando pilotos...</td></tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </section>
+
+  <!-- ░░ AUSPICIADORES ░░ -->
+  <section class="section-auspi" id="auspiciadores">
+    <div class="container">
+      <div class="section-header">
+        <span class="section-tag">// 04 — AUSPICIADORES</span>
+        <h2 class="section-title">Quienes hacen<br/>posible este evento</h2>
+      </div>
+      <div class="auspi-grid">
+        <div class="auspi-main-card">
+          <div class="auspi-tier-label">AUSPICIADOR OFICIAL</div>
+          <div class="auspi-clan-logo">
+            <span class="clan-bracket">[</span>
+            <span class="clan-name" id="clanName">NOMBRE_CLAN</span>
+            <span class="clan-bracket">]</span>
+          </div>
+          <p class="auspi-desc">
+            Escuadrilla organizadora y auspiciadora principal del primer evento FIDAE en War Thunder. Sin su visión y dedicación, esta experiencia única no sería posible.
+          </p>
+          <div class="auspi-tags">
+            <span>War Thunder</span>
+            <span>Escuadrilla Oficial</span>
+            <span>Chile</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ░░ FORMULARIO APLICAR ░░ -->
+  <section class="section-aplicar" id="aplicar">
+    <div class="container">
+      <div class="section-header">
+        <span class="section-tag">// 05 — REGISTRO</span>
+        <h2 class="section-title">Aplica al<br/>evento</h2>
+        <p class="section-desc">Completa el formulario para registrarte en la primera FIDAE de War Thunder. Los cupos son limitados.</p>
+      </div>
+
+      <div class="form-container">
+        <div class="form-glow"></div>
+        <form class="apply-form" id="applyForm" novalidate>
+          <div class="form-row">
+            <div class="form-group">
+              <label for="username">Nombre de usuario en War Thunder</label>
+              <input type="text" id="username" name="username" placeholder="Tu_Nick_WT" autocomplete="off" required />
+              <span class="form-error" id="err-username"></span>
+            </div>
+          </div>
+
+          <div class="form-row two-col">
+            <div class="form-group">
+              <label for="nacion">Nación del avión</label>
+              <div class="select-wrap">
+                <select id="nacion" name="nacion" required>
+                  <option value="">— Selecciona —</option>
+                  <option value="usa">🇺🇸 Estados Unidos</option>
+                  <option value="germany">🇩🇪 Alemania</option>
+                  <option value="ussr">🇷🇺 URSS / Rusia</option>
+                  <option value="uk">🇬🇧 Gran Bretaña</option>
+                  <option value="japan">🇯🇵 Japón</option>
+                  <option value="china">🇨🇳 China</option>
+                  <option value="italy">🇮🇹 Italia</option>
+                  <option value="france">🇫🇷 Francia</option>
+                  <option value="sweden">🇸🇪 Suecia</option>
+                  <option value="israel">🇮🇱 Israel</option>
+                </select>
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="6 9 12 15 18 9"/></svg>
+              </div>
+              <span class="form-error" id="err-nacion"></span>
+            </div>
+
+            <div class="form-group">
+              <label for="avion">Aeronave</label>
+              <input type="text" id="avion" name="avion" placeholder="Ej: F-16C, MiG-29, Gripen..." autocomplete="off" required />
+              <span class="form-error" id="err-avion"></span>
+            </div>
+          </div>
+
+          <div class="form-row">
+            <div class="form-group">
+              <label for="clan">Clan / Escuadrilla (opcional)</label>
+              <input type="text" id="clan" name="clan" placeholder="[CLAN]" autocomplete="off" />
+            </div>
+          </div>
+
+          <div class="form-submit">
+            <button type="submit" class="btn-submit" id="btnSubmit">
+              <span class="btn-text">Registrarme en FIDAE</span>
+              <span class="btn-loading" style="display:none">Enviando...</span>
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+            </button>
+          </div>
+
+          <div class="form-success" id="formSuccess" style="display:none">
+            <div class="success-icon">✓</div>
+            <h3>¡Registro exitoso, piloto!</h3>
+            <p>Tu aeronave ha sido registrada en la primera FIDAE de War Thunder. Mantente atento a las instrucciones del evento.</p>
+          </div>
+        </form>
+      </div>
+    </div>
+  </section>
+
+  <!-- ░░ FOOTER ░░ -->
+  <footer class="footer">
+    <div class="container">
+      <div class="footer-top">
+        <div class="footer-brand">
+          <div class="footer-logo">
+            <span class="logo-fidae">FIDAE</span>
+            <span class="logo-wt">× WAR THUNDER</span>
+          </div>
+          <p>El primer evento FIDAE en el universo de War Thunder.<br/>Una experiencia única e irrepetible.</p>
+        </div>
+        <div class="footer-links">
+          <h4>Síguenos</h4>
+          <div class="social-links">
+            <a href="#" class="social-link" id="linkTiktok" target="_blank" rel="noopener">
+              <svg viewBox="0 0 24 24" fill="currentColor"><path d="M19.59 6.69a4.83 4.83 0 01-3.77-4.25V2h-3.45v13.67a2.89 2.89 0 01-2.88 2.5 2.89 2.89 0 01-2.89-2.89 2.89 2.89 0 012.89-2.89c.28 0 .54.04.79.1V9.01a6.27 6.27 0 00-.79-.05 6.34 6.34 0 00-6.34 6.34 6.34 6.34 0 006.34 6.34 6.34 6.34 0 006.33-6.34V9.01a8.16 8.16 0 004.77 1.52V7.1a4.85 4.85 0 01-1-.41z"/></svg>
+              TikTok
+            </a>
+            <a href="#" class="social-link" id="linkInstagram" target="_blank" rel="noopener">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="2" y="2" width="20" height="20" rx="5" ry="5"/><path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"/><line x1="17.5" y1="6.5" x2="17.51" y2="6.5"/></svg>
+              Instagram
+            </a>
+            <a href="#" class="social-link" id="linkYoutube" target="_blank" rel="noopener">
+              <svg viewBox="0 0 24 24" fill="currentColor"><path d="M22.54 6.42a2.78 2.78 0 00-1.95-1.96C18.88 4 12 4 12 4s-6.88 0-8.59.46a2.78 2.78 0 00-1.95 1.96A29 29 0 001 12a29 29 0 00.46 5.58A2.78 2.78 0 003.41 19.6C5.12 20 12 20 12 20s6.88 0 8.59-.46a2.78 2.78 0 001.95-1.95A29 29 0 0023 12a29 29 0 00-.46-5.58z"/><polygon points="9.75 15.02 15.5 12 9.75 8.98 9.75 15.02" fill="#0a0c10"/></svg>
+              YouTube
+            </a>
+          </div>
+        </div>
+      </div>
+      <div class="footer-bottom">
+        <p>© 2025 FIDAE × War Thunder Event — Organizado por <span id="clanFooter">[NOMBRE_CLAN]</span></p>
+        <p class="footer-disclaimer">War Thunder es marca registrada de Gaijin Entertainment. Este es un evento comunitario no oficial.</p>
+      </div>
+    </div>
+  </footer>
+
+  <!-- Supabase JS SDK -->
+  <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+  <script src="js/config.js"></script>
+  <script src="js/main.js"></script>
+</body>
+</html>
