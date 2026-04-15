@@ -1,8 +1,3 @@
-// ═══════════════════════════════════════════
-//   FIDAE × WAR THUNDER — MAIN JS
-// ═══════════════════════════════════════════
-
-// ── NACIONES MAP ──
 const NACIONES = {
   usa:     { label: "Estados Unidos", flag: "🇺🇸" },
   germany: { label: "Alemania",        flag: "🇩🇪" },

@@ -1,8 +1,3 @@
-// ═══════════════════════════════════════════
-//   FIDAE × WAR THUNDER — CONFIG
-//   Edita este archivo con tus datos reales
-// ═══════════════════════════════════════════
-
 const CONFIG = {
   // ── SUPABASE ──
   // Reemplaza con tu URL y ANON KEY de Supabase
