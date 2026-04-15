@@ -16,11 +16,16 @@ let supabaseClient = null; // Cambiamos el nombre para evitar el choque
 
 function initSupabase() {
   try {
+    // 2. Usamos window.supabaseInstance (o cualquier otro nombre) 
+    // para NO chocar con el objeto global window.supabase
     const { createClient } = window.supabase;
-    // Usamos el nuevo nombre aquí también
-    supabaseClient = createClient(CONFIG.SUPABASE_URL, CONFIG.SUPABASE_ANON_KEY);
+    
+    // Asignamos el cliente a una variable global que usaremos en todo el código
+    window.db = createClient(CONFIG.SUPABASE_URL, CONFIG.SUPABASE_ANON_KEY);
+    
+    console.log("Supabase conectado correctamente");
   } catch (e) {
-    console.warn("Supabase no inicializado", e);
+    console.warn("Error inicializando Supabase:", e);
   }
 }
 
