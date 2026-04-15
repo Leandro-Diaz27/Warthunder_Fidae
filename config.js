@@ -6,8 +6,8 @@
 const CONFIG = {
   // ── SUPABASE ──
   // Reemplaza con tu URL y ANON KEY de Supabase
-  SUPABASE_URL: "https://TU_PROYECTO.supabase.co",
-  SUPABASE_ANON_KEY: "TU_ANON_KEY_AQUI",
+  SUPABASE_URL: "https://iykmzrhpkkkwscnenrff.supabase.co",
+  SUPABASE_ANON_KEY: "sb_publishable_qxkJ6-P1GroqDOdzmvRgiQ_n59rM90H",
 
   // ── CLAN ──
   CLAN_NAME: "NOMBRE_CLAN",   // <-- Pon el nombre de tu clan aquí
