@@ -580,6 +580,32 @@ section {
     text-shadow: 0 0 15px rgba(255, 255, 255, 0.2);
 }
 
+.auspi-clan-logo {
+  display: flex;
+  flex-direction: column; /* Pone el logo arriba y el texto abajo */
+  align-items: center;
+  gap: 1rem;
+  margin-bottom: 1.5rem;
+}
+
+.auspi-logo-img {
+  max-width: 120px; /* Ajusta el tamaño según tu logo */
+  height: auto;
+  filter: drop-shadow(0 0 10px rgba(201, 168, 76, 0.3)); /* Brillo sutil dorado */
+  transition: transform 0.3s ease;
+}
+
+.auspi-logo-img:hover {
+  transform: scale(1.05); /* Efecto sutil al pasar el mouse */
+}
+
+.clan-text-wrapper {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.3rem;
+}
+
 /* Ajuste opcional para los tags en el nuevo fondo */
 .auspi-tags span {
     background: rgba(255, 255, 255, 0.05);
