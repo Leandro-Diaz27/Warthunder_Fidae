@@ -1,0 +1,12 @@
+[
+  { "name": "F-16A Fighting Falcon", "country": "us" },
+  { "name": "F-14A Tomcat", "country": "us" },
+  { "name": "F-4E Phantom II", "country": "us" },
+  { "name": "MiG-29", "country": "ru" },
+  { "name": "MiG-21bis", "country": "ru" },
+  { "name": "Su-27", "country": "ru" },
+  { "name": "Eurofighter Typhoon", "country": "de" },
+  { "name": "JAS39A Gripen", "country": "se" },
+  { "name": "Mirage 2000-5F", "country": "fr" },
+  { "name": "A-10A Late", "country": "us" }
+]

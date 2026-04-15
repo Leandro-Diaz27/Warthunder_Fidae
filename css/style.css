@@ -620,6 +620,44 @@ section {
     text-shadow: 0 0 15px rgba(255, 255, 255, 0.2);
 }
 
+/* Contenedor de sugerencias */
+#apiResults {
+    position: absolute;
+    /* 100% lo pone justo al ras del input, 5px extra le da aire */
+    top: calc(100% + 5px); 
+    left: 0; /* Cámbialo a 5px o 10px si quieres moverlo a la derecha */
+    width: 100%;
+    max-height: 250px;
+    background: #1a1a1a;
+    border: 1px solid var(--accent);
+    border-radius: 8px;
+    overflow-y: auto;
+    z-index: 9999 !important;
+    display: none;
+    box-shadow: 0 10px 25px rgba(0,0,0,0.6);
+}
+
+/* Cada avión en la lista */
+.api-item {
+    padding: 12px 15px;
+    cursor: pointer;
+    border-bottom: 1px solid #333;
+    transition: background 0.2s;
+    color: white;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.api-item:hover {
+    background: #333;
+}
+
+/* Contenedor relativo para el input */
+.form-group {
+    position: relative; /* Necesario para que el absolute de arriba funcione */
+}
+
 .auspi-clan-logo {
   display: flex;
   flex-direction: column; /* Pone el logo arriba y el texto abajo */
