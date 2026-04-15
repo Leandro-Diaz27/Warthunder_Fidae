@@ -395,69 +395,79 @@ section {
   pointer-events: none;
 }
 
-/* ── MÉTRICAS ── */
+/* ── MÉTRICAS CON FONDO ── */
 .section-metricas {
-  background: var(--black);
+  position: relative;
+  /* Reemplaza con tu imagen, por ejemplo: bg-metricas.jpg */
+  background-image: linear-gradient(rgba(10, 11, 13, 0.8), rgba(10, 11, 13, 0.8)), 
+                    url('../assets/avionencimadelotro.png');
+  background-size: cover;
+  background-position: center;
+  background-attachment: fixed;
   overflow: hidden;
+  padding: 80px 0;
 }
+
 .metricas-bg-text {
   position: absolute; top: 50%; left: 50%;
   transform: translate(-50%,-50%);
   font-family: var(--font-display);
   font-size: clamp(8rem, 20vw, 18rem);
-  color: rgba(255,255,255,0.015);
+  color: rgba(255,255,255,0.02); /* Un toque más visible sobre la imagen */
   pointer-events: none; user-select: none;
   white-space: nowrap;
+  z-index: 1;
 }
+
 .metricas-grid {
+  position: relative;
+  z-index: 2;
   display: grid;
   grid-template-columns: repeat(4, 1fr);
   gap: 1px;
-  background: var(--border);
-  border: 1px solid var(--border);
+  background: rgba(201, 168, 76, 0.15); /* Color de la rejilla */
+  border: 1px solid rgba(201, 168, 76, 0.2);
   margin-bottom: 4rem;
 }
+
 .metrica-card {
-  background: var(--dark);
+  /* Fondo semi-transparente para ver la imagen detrás */
+  background: rgba(18, 20, 23, 0.75); 
+  backdrop-filter: blur(8px); /* Efecto de desenfoque táctico */
   padding: 2.5rem 2rem;
   display: flex; flex-direction: column;
   align-items: flex-start; gap: 0.5rem;
-  transition: background 0.3s;
+  transition: all 0.3s ease;
 }
+
 .metrica-card:hover {
-  background: var(--panel);
+  background: rgba(201, 168, 76, 0.1);
+  transform: translateY(-2px); /* Pequeño salto al pasar el mouse */
 }
-.metrica-highlight {
-  background: rgba(201,168,76,0.05) !important;
-}
-.metrica-icon {
-  width: 36px; height: 36px;
-  color: var(--accent); margin-bottom: 0.5rem;
-}
-.metrica-icon svg { width: 100%; height: 100%; }
+
+/* Ajuste para que los números resalten sobre el fondo */
 .metrica-num {
   font-family: var(--font-display);
   font-size: clamp(2.5rem, 5vw, 4rem);
   line-height: 1;
   color: var(--white);
+  text-shadow: 0 5px 15px rgba(0,0,0,0.5);
 }
+
 .metrica-label {
+  color: var(--white); /* Texto más claro para legibilidad */
+  opacity: 0.8;
   font-family: var(--font-cond);
-  font-size: 0.75rem; font-weight: 600;
-  letter-spacing: 0.12em; text-transform: uppercase;
-  color: var(--dim);
+  font-size: 0.75rem; 
+  font-weight: 600;
+  letter-spacing: 0.12em; 
+  text-transform: uppercase;
 }
-.metrica-sub {
-  font-size: 0.75rem; color: var(--accent); margin-top: 0.3rem;
-}
-.metrica-bar {
-  width: 100%; height: 2px;
-  background: var(--border2); margin-top: 1rem;
-  overflow: hidden;
-}
-.metrica-bar-fill {
-  height: 100%; background: var(--accent);
-  transition: width 1.5s cubic-bezier(0.23,1,0.32,1);
+
+/* Highlight especial para la métrica principal */
+.metrica-highlight {
+  background: rgba(201, 168, 76, 0.2) !important;
+  border-left: 2px solid var(--accent);
 }
 
 /* NACIONES */
@@ -527,58 +537,60 @@ section {
   border: 1px solid rgba(76,168,201,0.2);
 }
 
-/* ── AUSPICIADORES ── */
-.section-auspi { background: var(--black); }
-.auspi-grid { display: flex; justify-content: center; }
-.auspi-main-card {
-  border: 1px solid var(--border2);
-  background: var(--panel);
-  padding: 3rem 4rem;
-  text-align: center;
-  max-width: 560px; width: 100%;
-  position: relative; overflow: hidden;
-}
-.auspi-main-card::before {
-  content: '';
-  position: absolute; inset: 0;
-  background: radial-gradient(circle at 50% 0%, rgba(201,168,76,0.08), transparent 60%);
-  pointer-events: none;
-}
-.auspi-tier-label {
-  font-family: var(--font-cond);
-  font-size: 0.65rem; font-weight: 600; letter-spacing: 0.25em;
-  text-transform: uppercase; color: var(--accent);
-  margin-bottom: 1.5rem;
-}
-.auspi-clan-logo {
-  display: flex; align-items: center; justify-content: center; gap: 0.3rem;
-  margin-bottom: 1.5rem;
-}
-.clan-bracket {
-  font-family: var(--font-display);
-  font-size: 3rem; color: var(--accent);
-  line-height: 1;
-}
-.clan-name {
-  font-family: var(--font-display);
-  font-size: 3rem; letter-spacing: 0.1em;
-  color: var(--white);
-}
-.auspi-desc {
-  font-size: 0.9rem; color: var(--dim); line-height: 1.7;
-  margin-bottom: 1.5rem;
-}
-.auspi-tags {
-  display: flex; flex-wrap: wrap; justify-content: center; gap: 0.5rem;
-}
-.auspi-tags span {
-  padding: 0.3rem 0.7rem;
-  border: 1px solid var(--border2);
-  font-family: var(--font-cond);
-  font-size: 0.7rem; letter-spacing: 0.1em; text-transform: uppercase;
-  color: var(--dim);
+/* ── AUSPICIADORES CON FONDO ── */
+.section-auspi { 
+    position: relative;
+    /* REEMPLAZA 'tu-imagen.jpg' por el nombre de tu archivo en la carpeta assets */
+    background-image: linear-gradient(rgba(10, 11, 13, 0.8), rgba(10, 11, 13, 0.9)), 
+                      url('../assets/f4blancoynegro.jpg'); 
+    background-size: cover;
+    background-position: center;
+    background-attachment: fixed; /* Efecto Parallax: el fondo se queda quieto al bajar */
+    padding: 100px 0;
+    border-top: 1px solid var(--border2);
+    border-bottom: 1px solid var(--border2);
 }
 
+.auspi-grid { 
+    display: flex; 
+    justify-content: center; 
+    position: relative;
+    z-index: 2; /* Asegura que la tarjeta esté sobre el fondo */
+}
+
+.auspi-main-card {
+    border: 1px solid rgba(201, 168, 76, 0.3); /* Bordes un poco más brillantes por el fondo */
+    background: rgba(26, 28, 32, 0.85); /* Fondo semitransparente */
+    backdrop-filter: blur(12px); /* Efecto de cristal esmerilado (Blur) */
+    padding: 3rem 4rem;
+    text-align: center;
+    max-width: 560px; 
+    width: 100%;
+    position: relative; 
+    overflow: hidden;
+    box-shadow: 0 20px 50px rgba(0,0,0,0.5); /* Sombra para dar profundidad */
+}
+
+/* El resto de tus estilos se mantienen igual, pero asegúrate de que el clan name resalte */
+.clan-name {
+    font-family: var(--font-display);
+    font-size: 3.5rem; /* Un poco más grande para SternenJäger */
+    letter-spacing: 0.1em;
+    color: var(--white);
+    text-shadow: 0 0 15px rgba(255, 255, 255, 0.2);
+}
+
+/* Ajuste opcional para los tags en el nuevo fondo */
+.auspi-tags span {
+    background: rgba(255, 255, 255, 0.05);
+    padding: 0.3rem 0.7rem;
+    border: 1px solid var(--border2);
+    font-family: var(--font-cond);
+    font-size: 0.7rem; 
+    letter-spacing: 0.1em; 
+    text-transform: uppercase;
+    color: var(--white); /* Texto un poco más claro para que resalte */
+}
 /* ── APLICAR ── */
 .section-aplicar {
   background: linear-gradient(180deg, var(--dark) 0%, var(--black) 100%);
@@ -678,56 +690,127 @@ section {
 }
 .form-success p { color: var(--dim); font-size: 0.9rem; }
 
-/* ── FOOTER ── */
+/* ── FOOTER CON IMAGEN ── */
 .footer {
-  position: relative; z-index: 1;
-  background: var(--panel);
-  border-top: 1px solid var(--border2);
-  padding: 4rem 0 2rem;
+  position: relative; 
+  z-index: 1;
+  background-image: linear-gradient(rgba(18, 20, 23, 0.9), rgba(10, 11, 13, 0.95)), 
+                    url('../assets/avionescarapela.png'); /* Usamos tu archivo original */
+  background-size: cover;
+
+  /* CAMBIO CLAVE: 
+     El primer valor es horizontal (50% = centrado).
+     El segundo valor es vertical. Al poner un porcentaje alto (como 85% o 90%),
+     estamos subiendo la imagen para que la parte de abajo (donde está el avión) se vea.
+  */
+  background-position: 50% 79%; 
+  
+  border-top: 1px solid var(--accent);
+  padding: 5rem 0 2rem;
+  overflow: hidden;
 }
 .footer-top {
-  display: flex; justify-content: space-between; align-items: flex-start;
-  gap: 3rem; margin-bottom: 3rem;
-  border-bottom: 1px solid var(--border);
+  display: flex; 
+  justify-content: space-between; 
+  align-items: flex-start;
+  gap: 3rem; 
+  margin-bottom: 3rem;
+  border-bottom: 1px solid rgba(201, 168, 76, 0.2); /* Borde sutil dorado */
   padding-bottom: 3rem;
+  position: relative;
+  z-index: 2;
 }
+
 .footer-brand .footer-logo {
-  display: flex; align-items: baseline; gap: 0.5rem;
+  display: flex; 
+  align-items: baseline; 
+  gap: 0.5rem;
   margin-bottom: 1rem;
 }
-.footer-brand p { font-size: 0.85rem; color: var(--dim); line-height: 1.6; }
-.footer-links h4 {
-  font-family: var(--font-cond); font-size: 0.7rem;
-  font-weight: 600; letter-spacing: 0.2em;
-  text-transform: uppercase; color: var(--accent);
-  margin-bottom: 1.2rem;
-}
-.social-links { display: flex; flex-direction: column; gap: 0.8rem; }
-.social-link {
-  display: inline-flex; align-items: center; gap: 0.7rem;
-  font-family: var(--font-cond); font-size: 0.85rem; font-weight: 600;
-  letter-spacing: 0.1em; text-transform: uppercase;
-  color: var(--dim); transition: color 0.2s;
-}
-.social-link svg { width: 18px; height: 18px; }
-.social-link:hover { color: var(--accent); }
-.footer-bottom {
-  display: flex; justify-content: space-between; align-items: center;
-  flex-wrap: wrap; gap: 0.5rem;
-}
-.footer-bottom p {
-  font-size: 0.75rem; color: var(--dim);
-  font-family: var(--font-cond); letter-spacing: 0.05em;
-}
-.footer-disclaimer { opacity: 0.5; }
 
-/* ── SCROLL REVEAL ── */
-.reveal {
-  opacity: 0; transform: translateY(40px);
-  transition: opacity 0.7s, transform 0.7s;
+.footer-brand p { 
+  font-size: 0.85rem; 
+  color: var(--white); 
+  opacity: 0.7;
+  line-height: 1.6; 
+  max-width: 300px;
 }
+
+.footer-links h4 {
+  font-family: var(--font-cond); 
+  font-size: 0.7rem;
+  font-weight: 600; 
+  letter-spacing: 0.2em;
+  text-transform: uppercase; 
+  color: var(--accent);
+  margin-bottom: 1.2rem;
+  text-shadow: 0 0 10px rgba(201, 168, 76, 0.3);
+}
+
+.social-links { 
+  display: flex; 
+  flex-direction: column; 
+  gap: 0.8rem; 
+}
+
+.social-link {
+  display: inline-flex; 
+  align-items: center; 
+  gap: 0.7rem;
+  font-family: var(--font-cond); 
+  font-size: 0.85rem; 
+  font-weight: 600;
+  letter-spacing: 0.1em; 
+  text-transform: uppercase;
+  color: var(--dim); 
+  transition: all 0.3s ease;
+}
+
+.social-link:hover { 
+  color: var(--white); 
+  transform: translateX(5px); /* Desplazamiento sutil al pasar el mouse */
+}
+
+.footer-bottom {
+  display: flex; 
+  justify-content: space-between; 
+  align-items: center;
+  flex-wrap: wrap; 
+  gap: 1rem;
+  position: relative;
+  z-index: 2;
+}
+
+.footer-bottom p {
+  font-size: 0.75rem; 
+  color: var(--dim);
+  font-family: var(--font-cond); 
+  letter-spacing: 0.05em;
+}
+
+.footer-disclaimer { 
+  opacity: 0.4; 
+  font-style: italic;
+}
+
+/* Efecto de resplandor para el nombre del clan en el footer */
+#clanFooter {
+  color: var(--accent);
+  font-weight: bold;
+  text-transform: uppercase;
+}
+
+/* ── SCROLL REVEAL (Ajustado) ── */
+.reveal {
+  opacity: 0; 
+  transform: translateY(30px);
+  transition: all 0.8s cubic-bezier(0.2, 1, 0.3, 1);
+  will-change: transform, opacity;
+}
+
 .reveal.visible {
-  opacity: 1; transform: translateY(0);
+  opacity: 1; 
+  transform: translateY(0);
 }
 
 /* ── RESPONSIVE ── */
