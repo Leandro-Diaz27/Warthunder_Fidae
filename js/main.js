@@ -1,3 +1,4 @@
+// ── NACIONES MAP ──
 const NACIONES = {
   usa:     { label: "Estados Unidos", flag: "🇺🇸" },
   germany: { label: "Alemania",        flag: "🇩🇪" },
@@ -12,17 +13,11 @@ const NACIONES = {
 };
 
 // ── SUPABASE CLIENT ──
-let supabaseClient = null; // Cambiamos el nombre para evitar el choque
-
+// Usamos window.db para evitar conflictos con la librería global
 function initSupabase() {
   try {
-    // 2. Usamos window.supabaseInstance (o cualquier otro nombre) 
-    // para NO chocar con el objeto global window.supabase
     const { createClient } = window.supabase;
-    
-    // Asignamos el cliente a una variable global que usaremos en todo el código
     window.db = createClient(CONFIG.SUPABASE_URL, CONFIG.SUPABASE_ANON_KEY);
-    
     console.log("Supabase conectado correctamente");
   } catch (e) {
     console.warn("Error inicializando Supabase:", e);
@@ -43,12 +38,10 @@ document.addEventListener("DOMContentLoaded", () => {
 
 // ── APLICAR CONFIG ──
 function applyConfig() {
-  // Clan name
   document.querySelectorAll("#clanName, #clanFooter").forEach(el => {
     el.textContent = CONFIG.CLAN_NAME;
   });
 
-  // Social links
   const tiktok = document.getElementById("linkTiktok");
   const ig = document.getElementById("linkInstagram");
   const yt = document.getElementById("linkYoutube");
@@ -56,12 +49,10 @@ function applyConfig() {
   if (ig)     ig.href     = CONFIG.INSTAGRAM_URL;
   if (yt)     yt.href     = CONFIG.YOUTUBE_URL;
 
-  // Horas evento métrica
   const horasEl = document.getElementById("countHoras");
   if (horasEl) horasEl.textContent = CONFIG.HORAS_EVENTO;
 }
 
-// ── NAV ──
 function initNav() {
   const nav = document.getElementById("nav");
   window.addEventListener("scroll", () => {
@@ -74,14 +65,12 @@ function initNav() {
   });
 }
 
-// ── HERO ANIMATION DELAYS ──
 function initHeroDelays() {
   document.querySelectorAll("[data-delay]").forEach(el => {
     el.style.animationDelay = el.dataset.delay + "ms";
   });
 }
 
-// ── SCROLL REVEAL ──
 function initScrollReveal() {
   const targets = document.querySelectorAll(
     ".metrica-card, .highlight-item, .auspi-main-card, .visual-card, .naciones-breakdown"
@@ -100,7 +89,6 @@ function initScrollReveal() {
   targets.forEach(el => observer.observe(el));
 }
 
-// ── COUNTER ANIMATION ──
 function animateCounter(el, target, duration = 1500) {
   const start = performance.now();
   const update = (now) => {
@@ -121,9 +109,9 @@ async function loadMetricas() {
   let aviones = new Set();
   let nacionCounts = {};
 
-  if (supabase) {
+  if (window.db) {
     try {
-      const { data, error } = await supabase
+      const { data, error } = await window.db
         .from("registros")
         .select("username, nacion, avion");
 
@@ -140,19 +128,12 @@ async function loadMetricas() {
     } catch (e) {
       console.warn("Error cargando métricas:", e);
     }
-  } else {
-    // Demo data si no hay Supabase
-    registrados = 0;
   }
-
-  // Animar contadores
-  const maxReg = Math.max(registrados, 1);
 
   animateCounter(document.getElementById("countRegistrados"), registrados);
   animateCounter(document.getElementById("countPaises"), paises.size);
   animateCounter(document.getElementById("countAviones"), aviones.size);
 
-  // Barras
   setTimeout(() => {
     const barRegistrados = document.querySelector('[data-metric="registrados"] .metrica-bar-fill');
     const barPaises = document.querySelector('[data-metric="paises"] .metrica-bar-fill');
@@ -162,22 +143,17 @@ async function loadMetricas() {
     if (barAviones)     barAviones.style.width = Math.min((aviones.size / 30) * 100, 100) + "%";
   }, 300);
 
-  // Naciones breakdown
   renderNaciones(nacionCounts, registrados);
 }
 
-// ── RENDER NACIONES ──
 function renderNaciones(counts, total) {
   const list = document.getElementById("nacionesList");
   if (!list) return;
-
   const entries = Object.entries(counts).sort((a, b) => b[1] - a[1]);
-
   if (entries.length === 0) {
     list.innerHTML = '<div class="nacion-loading">Sin registros aún. ¡Sé el primero!</div>';
     return;
   }
-
   list.innerHTML = entries.map(([key, count]) => {
     const nacion = NACIONES[key] || { label: key, flag: "🌍" };
     const pct = total > 0 ? Math.round((count / total) * 100) : 0;
@@ -197,13 +173,13 @@ async function loadParticipantes() {
   const tbody = document.getElementById("tablaBody");
   if (!tbody) return;
 
-  if (!supabase) {
-    tbody.innerHTML = `<tr><td colspan="5" class="tabla-loading">Conecta Supabase en js/config.js para ver los participantes.</td></tr>`;
+  if (!window.db) {
+    tbody.innerHTML = `<tr><td colspan="5" class="tabla-loading">Error de conexión con la base de datos.</td></tr>`;
     return;
   }
 
   try {
-    const { data, error } = await supabase
+    const { data, error } = await window.db
       .from("registros")
       .select("id, username, nacion, avion, clan, created_at")
       .order("created_at", { ascending: false })
@@ -258,9 +234,8 @@ function initForm() {
     const clan     = document.getElementById("clan").value.trim();
 
     try {
-      if (supabase) {
-        // Verificar duplicado
-        const { data: existing } = await supabase
+      if (window.db) {
+        const { data: existing } = await window.db
           .from("registros")
           .select("id")
           .ilike("username", username)
@@ -274,21 +249,18 @@ function initForm() {
           return;
         }
 
-        const { error } = await supabase
+        const { error } = await window.db
           .from("registros")
           .insert([{ username, nacion, avion, clan: clan || null }]);
 
         if (error) throw error;
       }
 
-      // Éxito
-      form.querySelector(".apply-form > *:not(#formSuccess)") ; // keep structure
       document.getElementById("formSuccess").style.display = "block";
       form.querySelectorAll(".form-row, .form-submit").forEach(el => {
         el.style.display = "none";
       });
 
-      // Recargar métricas y tabla
       loadMetricas();
       loadParticipantes();
 
@@ -302,33 +274,16 @@ function initForm() {
   });
 }
 
-// ── VALIDACIÓN ──
 function validateForm() {
   let valid = true;
   clearErrors();
-
   const username = document.getElementById("username").value.trim();
   const nacion   = document.getElementById("nacion").value;
   const avion    = document.getElementById("avion").value.trim();
 
-  if (!username) {
-    showFieldError("err-username", "El nombre de usuario es obligatorio.");
-    valid = false;
-  } else if (username.length < 3) {
-    showFieldError("err-username", "Mínimo 3 caracteres.");
-    valid = false;
-  }
-
-  if (!nacion) {
-    showFieldError("err-nacion", "Selecciona una nación.");
-    valid = false;
-  }
-
-  if (!avion) {
-    showFieldError("err-avion", "El nombre del avión es obligatorio.");
-    valid = false;
-  }
-
+  if (!username) { showFieldError("err-username", "Obligatorio."); valid = false; }
+  if (!nacion) { showFieldError("err-nacion", "Selecciona nación."); valid = false; }
+  if (!avion) { showFieldError("err-avion", "Obligatorio."); valid = false; }
   return valid;
 }
 
@@ -343,9 +298,5 @@ function clearErrors() {
 
 function escapeHtml(str) {
   if (!str) return "";
-  return str
-    .replace(/&/g, "&amp;")
-    .replace(/</g, "&lt;")
-    .replace(/>/g, "&gt;")
-    .replace(/"/g, "&quot;");
+  return str.replace(/&/g, "&amp;").replace(/</g, "&lt;").replace(/>/g, "&gt;").replace(/"/g, "&quot;");
 }
