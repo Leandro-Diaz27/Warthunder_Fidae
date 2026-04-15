@@ -5,7 +5,7 @@ const CONFIG = {
   SUPABASE_ANON_KEY: "sb_publishable_qxkJ6-P1GroqDOdzmvRgiQ_n59rM90H",
 
   // ── CLAN ──
-  CLAN_NAME: "NOMBRE_CLAN",   // <-- Pon el nombre de tu clan aquí
+  CLAN_NAME: "SternenJäger",   // <-- Pon el nombre de tu clan aquí
 
   // ── REDES SOCIALES ──
   TIKTOK_URL:    "https://tiktok.com/@tucuenta",
