@@ -149,19 +149,41 @@ async function loadMetricas() {
 function renderNaciones(counts, total) {
   const list = document.getElementById("nacionesList");
   if (!list) return;
+
   const entries = Object.entries(counts).sort((a, b) => b[1] - a[1]);
-  if (entries.length === 0) {
-    list.innerHTML = '<div class="nacion-loading">Sin registros aún. ¡Sé el primero!</div>';
-    return;
-  }
+
+  // Mapa de conversión: de lo que tienes en Supabase al código de bandera
+  const flagMap = {
+    "ussr": "ru",
+    "ru": "ru",
+    "usa": "us",
+    "us": "us",
+    "china": "cn",
+    "cn": "cn",
+    "japan": "jp",
+    "jp": "jp",
+    "germany": "de",
+    "chile": "cl"
+  };
+
   list.innerHTML = entries.map(([key, count]) => {
-    const nacion = NACIONES[key] || { label: key, flag: "🌍" };
+    const idLimpio = key.toLowerCase().trim();
+    const flagCode = flagMap[idLimpio] || "un"; // 'un' es bandera de la ONU si no existe
+    const nacionInfo = NACIONES[idLimpio] || { label: key };
     const pct = total > 0 ? Math.round((count / total) * 100) : 0;
+    
+    // URL de FlagCDN para banderas nítidas
+    const flagUrl = `https://flagcdn.com/w80/${flagCode}.png`;
+    
     return `
       <div class="nacion-item">
-        <span class="nacion-flag">${nacion.flag}</span>
-        <span>${nacion.label}</span>
-        <span style="font-size:0.7rem;color:var(--dim);margin-left:0.3rem">(${pct}%)</span>
+        <div class="nacion-flag-container">
+          <img src="${flagUrl}" alt="${key}" class="nacion-flag-img">
+        </div>
+        <div class="nacion-info">
+          <span class="nacion-label">${nacionInfo.label || key}</span>
+          <span class="nacion-pct">${pct}% del total</span>
+        </div>
         <span class="nacion-count">${count}</span>
       </div>
     `;
