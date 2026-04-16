@@ -867,3 +867,36 @@ function escapeHtml(str) {
   return str.replace(/&/g, "&amp;").replace(/</g, "&lt;").replace(/>/g, "&gt;").replace(/"/g, "&quot;");
 }
 
+const bgMusic = document.getElementById('bgMusic');
+const musicIcon = document.getElementById('musicIcon');
+const musicBtn = document.querySelector('.music-control');
+const volumeSlider = document.getElementById('volumeSlider');
+
+// Control de Play/Pause
+function toggleMusic() {
+  if (bgMusic.paused) {
+    bgMusic.play();
+    musicIcon.textContent = "🔊";
+    musicBtn.classList.add('playing');
+  } else {
+    bgMusic.pause();
+    musicIcon.textContent = "📁";
+    musicBtn.classList.remove('playing');
+  }
+}
+
+// Control de Volumen
+volumeSlider.addEventListener('input', (e) => {
+  const vol = e.target.value;
+  bgMusic.volume = vol;
+  
+  // Cambiar icono si el volumen es 0
+  if (vol == 0) {
+    musicIcon.textContent = "🔇";
+  } else if (!bgMusic.paused) {
+    musicIcon.textContent = "🔊";
+  }
+});
+
+// Sincronizar volumen inicial
+bgMusic.volume = volumeSlider.value;

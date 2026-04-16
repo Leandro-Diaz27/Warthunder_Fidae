@@ -71,6 +71,54 @@ select, input, textarea { font-family: inherit; }
   padding: 0 2rem;
 }
 
+.music-control {
+  position: fixed;
+  bottom: 20px;
+  right: 20px;
+  background: rgba(18, 20, 23, 0.9);
+  border: 1px solid var(--accent);
+  color: var(--white);
+  border-radius: 4px;
+  cursor: pointer;
+  z-index: 9999;
+  display: flex;
+  align-items: center;
+  padding: 10px 15px;
+  gap: 10px;
+  transition: all 0.3s ease;
+}
+
+/* Contenedor del slider oculto */
+.volume-slider-container {
+  width: 0;
+  overflow: hidden;
+  transition: width 0.3s ease;
+  display: flex;
+  align-items: center;
+}
+
+/* Mostrar slider al hacer hover */
+.music-control:hover .volume-slider-container {
+  width: 80px; /* Ancho del slider al expandirse */
+  margin-right: 10px;
+}
+
+.music-info {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  font-family: var(--font-cond);
+  font-size: 0.8rem;
+  letter-spacing: 1px;
+}
+
+/* Estilo del slider (la barrita) */
+#volumeSlider {
+  width: 80px;
+  cursor: pointer;
+  accent-color: var(--accent); /* Color dorado del evento */
+}
+
 /* ── NAV ── */
 .nav {
   position: fixed; top: 0; left: 0; right: 0; z-index: 1000;
