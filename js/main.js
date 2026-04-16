@@ -623,27 +623,42 @@ function animateCounter(el, target, duration = 1500) {
   requestAnimationFrame(update);
 }
 
-// ── CARGAR MÉTRICAS ──
+// ── CARGAR MÉTRICAS ACTUALIZADO ──
 async function loadMetricas() {
   let registrados = 0;
   let paises = new Set();
   let aviones = new Set();
+  let escuadrones = new Set(); // 👈 Set para clanes únicos
   let nacionCounts = {};
 
   if (window.db) {
     try {
+      // 1. Incluimos la columna 'clan' en la selección
       const { data, error } = await window.db
         .from("registros")
-        .select("username, nacion, avion");
+        .select("username, nacion, avion, clan");
 
       if (!error && data) {
         registrados = data.length;
         data.forEach(r => {
+          // Lógica de Naciones
           if (r.nacion) {
-            paises.add(r.nacion);
+            const nacionKey = r.nacion.trim().toLowerCase();
+            paises.add(nacionKey);
             nacionCounts[r.nacion] = (nacionCounts[r.nacion] || 0) + 1;
           }
-          if (r.avion) aviones.add(r.avion.trim().toLowerCase());
+
+          // Lógica de Aviones
+          if (r.avion) {
+            aviones.add(r.avion.trim().toLowerCase());
+          }
+
+          // Lógica de Escuadrones (Clanes)
+          // Filtramos para no contar campos vacíos, nulos o que solo tengan un guion
+          if (r.clan && r.clan.trim() !== "" && r.clan.trim() !== "-") {
+            // Convertimos a Mayúsculas para que "-STJG-" y "-stjg-" cuenten como el mismo
+            escuadrones.add(r.clan.trim().toUpperCase());
+          }
         });
       }
     } catch (e) {
@@ -651,64 +666,72 @@ async function loadMetricas() {
     }
   }
 
-  animateCounter(document.getElementById("countRegistrados"), registrados);
-  animateCounter(document.getElementById("countPaises"), paises.size);
-  animateCounter(document.getElementById("countAviones"), aviones.size);
+  // 2. Animar los números en las tarjetas
+  if (typeof animateCounter === "function") {
+    animateCounter(document.getElementById("countRegistrados"), registrados);
+    animateCounter(document.getElementById("countPaises"), paises.size);
+    animateCounter(document.getElementById("countAviones"), aviones.size);
+    
+    // 3. Animación para la nueva métrica de Escuadrones
+    const elementEscuadrones = document.getElementById("countEscuadrones");
+    if (elementEscuadrones) {
+      animateCounter(elementEscuadrones, escuadrones.size);
+    }
 
-  setTimeout(() => {
-    const barRegistrados = document.querySelector('[data-metric="registrados"] .metrica-bar-fill');
-    const barPaises = document.querySelector('[data-metric="paises"] .metrica-bar-fill');
-    const barAviones = document.querySelector('[data-metric="aviones"] .metrica-bar-fill');
-    if (barRegistrados) barRegistrados.style.width = Math.min((registrados / 100) * 100, 100) + "%";
-    if (barPaises)      barPaises.style.width = Math.min((paises.size / Object.keys(NACIONES).length) * 100, 100) + "%";
-    if (barAviones)     barAviones.style.width = Math.min((aviones.size / 30) * 100, 100) + "%";
-  }, 300);
+    // Animación para las horas (desde tu archivo CONFIG)
+    const elementHoras = document.getElementById("countHoras");
+    if (elementHoras && typeof CONFIG !== 'undefined') {
+      animateCounter(elementHoras, CONFIG.HORAS_EVENTO);
+    }
+  }
 
+  // Renderizar el carrusel infinito de banderas
   renderNaciones(nacionCounts, registrados);
 }
 
+// ── RENDERIZAR CARRUSEL DE BANDERAS ──
 function renderNaciones(counts, total) {
-  const list = document.getElementById("nacionesList");
-  if (!list) return;
+  const marquee = document.getElementById("flagsMarquee");
+  if (!marquee) return;
 
-  const entries = Object.entries(counts).sort((a, b) => b[1] - a[1]);
-
-  // Mapa de conversión: de lo que tienes en Supabase al código de bandera
   const flagMap = {
-    "ussr": "ru",
-    "ru": "ru",
-    "usa": "us",
-    "us": "us",
-    "china": "cn",
-    "cn": "cn",
-    "japan": "jp",
-    "jp": "jp",
-    "germany": "de",
-    "chile": "cl"
+    "ussr": "ru", "ru": "ru", "usa": "us", "us": "us", "china": "cn", "cn": "cn",
+    "japan": "jp", "jp": "jp", "germany": "de", "chile": "cl", "uk": "gb", "france": "fr",
+    "italy": "it", "sweden": "se", "israel": "il"
   };
 
-  list.innerHTML = entries.map(([key, count]) => {
+  // Si aún no hay suficientes datos reales, rellenamos con naciones estéticas por defecto
+  let entries = Object.entries(counts);
+  if (entries.length < 5) {
+    entries = [
+      ['usa',0], ['germany',0], ['ussr',0], ['uk',0], 
+      ['japan',0], ['chile',0], ['france',0], ['italy',0]
+    ];
+  } else {
+    entries.sort((a, b) => b[1] - a[1]);
+  }
+
+  const flagsHtml = entries.map(([key, count]) => {
     const idLimpio = key.toLowerCase().trim();
-    const flagCode = flagMap[idLimpio] || "un"; // 'un' es bandera de la ONU si no existe
-    const nacionInfo = NACIONES[idLimpio] || { label: key };
-    const pct = total > 0 ? Math.round((count / total) * 100) : 0;
+    const flagCode = flagMap[idLimpio] || "un";
     
-    // URL de FlagCDN para banderas nítidas
+    // Obtenemos el nombre correcto de la constante NACIONES o usamos la llave
+    const label = (typeof NACIONES !== 'undefined' && NACIONES[idLimpio]) 
+                  ? NACIONES[idLimpio].label 
+                  : key.toUpperCase();
+    
     const flagUrl = `https://flagcdn.com/w80/${flagCode}.png`;
     
     return `
-      <div class="nacion-item">
-        <div class="nacion-flag-container">
-          <img src="${flagUrl}" alt="${key}" class="nacion-flag-img">
-        </div>
-        <div class="nacion-info">
-          <span class="nacion-label">${nacionInfo.label || key}</span>
-          <span class="nacion-pct">${pct}% del total</span>
-        </div>
-        <span class="nacion-count">${count}</span>
+      <div class="marquee-item">
+        <img src="${flagUrl}" alt="${key}" class="marquee-flag">
+        <span class="marquee-name">${label}</span>
       </div>
     `;
   }).join("");
+
+  // Duplicamos el contenido (HTML + HTML) para que el CSS haga el efecto de loop infinito sin cortes
+  marquee.innerHTML = flagsHtml + flagsHtml;
 }
 
 // ── CARGAR PARTICIPANTES ──

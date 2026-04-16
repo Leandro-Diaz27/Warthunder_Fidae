@@ -21,7 +21,7 @@
 
 /* ── RESET ── */
 *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
-html { scroll-behavior: smooth; font-size: 16px; }
+html { scroll-behavior: smooth; font-size: 16px; scroll-padding-top: 78px;}
 body {
   background: var(--black);
   color: var(--white);
@@ -310,103 +310,184 @@ section {
   color: var(--dim); font-size: 0.95rem;
 }
 
-/* ── EVENTO ── */
-.section-evento { background: var(--dark); }
-.evento-grid {
+/* ═══════════════════════════════════════════
+   SECCIÓN EVENTO (TEXTO + CARRUSEL)
+   ═══════════════════════════════════════════ */
+.section-evento {
+  position: relative;
+  z-index: 10;
+  /* Esto es lo que tapa el video: */
+  background: var(--black); 
+  /* Opcional: añade un poco de espacio arriba y abajo si lo ves muy pegado */
+  padding: 2rem 0; 
+  /* Opcional: una línea sutil arriba para separar la sección */
+  border-top: 1px solid var(--border);
+}
+.evento-layout-v2 {
   display: grid;
   grid-template-columns: 1fr 1fr;
-  gap: 5rem;
+  gap: 4rem;
   align-items: center;
-}
-.evento-intro {
-  font-size: 1.05rem; color: var(--white); margin-bottom: 1rem; line-height: 1.75;
-}
-.evento-text p { color: var(--dim); margin-bottom: 1rem; }
-.evento-text strong { color: var(--white); font-weight: 500; }
-.evento-highlights {
-  margin-top: 2.5rem;
-  display: flex; flex-direction: column; gap: 1.2rem;
-}
-.highlight-item {
-  display: flex; align-items: flex-start; gap: 1rem;
-  padding: 1rem; border: 1px solid var(--border);
-  transition: border-color 0.2s, background 0.2s;
-}
-.highlight-item:hover {
-  border-color: rgba(201,168,76,0.3);
-  background: rgba(201,168,76,0.03);
-}
-.highlight-icon {
-  color: var(--accent); font-size: 0.9rem;
-  flex-shrink: 0; margin-top: 2px;
-}
-.highlight-item strong {
-  display: block;
-  font-family: var(--font-cond); font-weight: 600;
-  letter-spacing: 0.05em; font-size: 0.95rem;
-  color: var(--white);
-}
-.highlight-item span {
-  font-size: 0.8rem; color: var(--dim);
-}
-.evento-visual {
-  position: relative;
-}
-.visual-card {
-  aspect-ratio: 1;
-  max-width: 360px;
-  border: 1px solid var(--border2);
-  background: var(--panel);
-  display: flex; align-items: center; justify-content: center;
-  position: relative; overflow: hidden;
-  transition: transform 0.4s;
-}
-.visual-card:hover { transform: scale(1.01); }
-.visual-card::before {
-  content: '';
-  position: absolute; top: -50%; left: -50%;
-  width: 200%; height: 200%;
-  background: radial-gradient(circle at 60% 40%, rgba(201,168,76,0.08), transparent 60%);
-  pointer-events: none;
-}
-.visual-card-inner {
-  text-align: center; padding: 2rem;
-}
-.vc-label {
-  font-family: var(--font-cond);
-  font-size: 0.7rem; font-weight: 600;
-  letter-spacing: 0.3em; text-transform: uppercase;
-  color: var(--accent); margin-bottom: 0.5rem;
-}
-.vc-number {
-  font-family: var(--font-display);
-  font-size: 12rem; line-height: 1;
-  color: var(--white);
-  text-shadow: 0 0 80px rgba(201,168,76,0.2);
-}
-.vc-text {
-  font-family: var(--font-cond);
-  font-size: 0.75rem; letter-spacing: 0.15em;
-  text-transform: uppercase; color: var(--dim);
-}
-.visual-card-accent {
-  position: absolute; bottom: -1.5rem; right: -1.5rem;
-  width: 100px; height: 100px;
-  border: 1px solid rgba(201,168,76,0.2);
-  pointer-events: none;
+  margin-top: 2rem;
 }
 
+/* --- TEXTOS Y CARACTERÍSTICAS (IZQUIERDA) --- */
+.evento-content {
+  display: flex;
+  flex-direction: column;
+  gap: 2.5rem;
+}
+
+.evento-text-box p {
+  color: var(--dim);
+  font-family: var(--font-body);
+  font-size: 1.1rem;
+  line-height: 1.7;
+  margin-bottom: 1.2rem;
+}
+
+.evento-text-box strong {
+  color: var(--white);
+  font-weight: 500;
+}
+
+.evento-highlights-v2 {
+  display: flex;
+  flex-direction: column;
+  gap: 1.2rem;
+}
+
+.hl-item-v2 {
+  display: flex;
+  align-items: center;
+  gap: 1.2rem;
+  background: rgba(255,255,255,0.02);
+  border-left: 3px solid var(--accent);
+  /* 👇 Aquí es donde cambiamos el grosor (antes era 1.2rem 1.5rem) 👇 */
+  padding: 0.2rem 1.5rem; 
+  border-radius: 0 4px 4px 0;
+  transition: all 0.3s ease;
+}
+
+.hl-item-v2:hover {
+  transform: translateX(10px);
+  background: rgba(255,255,255,0.05);
+}
+
+.hl-icon-v2 {
+  display: flex;
+  color: var(--accent);
+  opacity: 0.9;
+}
+
+.hl-text-v2 {
+  display: flex;
+  flex-direction: column;
+}
+
+.hl-text-v2 strong {
+  color: var(--white);
+  font-family: var(--font-cond);
+  font-size: 1.2rem;
+  letter-spacing: 1px;
+}
+
+.hl-text-v2 span {
+  color: var(--dim);
+  font-size: 0.9rem;
+}
+
+/* --- CARRUSEL CSS AUTOMÁTICO (DERECHA) --- */
+.evento-carousel-wrapper {
+  position: relative;
+  width: 100%;
+  height: 500px;
+  border-radius: 8px;
+  overflow: hidden;
+  border: 1px solid var(--border2);
+  box-shadow: 0 20px 50px rgba(0,0,0,0.5);
+  
+  /* 👇 ESTA ES LA LÍNEA NUEVA 👇 */
+  transform: translateY(-80px); /* Cambia -40px por -60px si lo quieres aún más arriba */
+}
+.css-carousel {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  background: #000;
+}
+
+/* Animación de opacidad para 3 imágenes (15s total, 5s cada una) */
+.carousel-slide {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  opacity: 0;
+  animation: fadeCarousel 15s infinite;
+}
+
+.slide-1 { animation-delay: 0s; }
+.slide-2 { animation-delay: 5s; }
+.slide-3 { animation-delay: 10s; }
+
+@keyframes fadeCarousel {
+  0%, 25% { opacity: 1; transform: scale(1); }
+  33%, 92% { opacity: 0; transform: scale(1.05); } /* Ligero zoom out */
+  100% { opacity: 1; transform: scale(1); }
+}
+
+/* Overlay inferior del carrusel */
+.carousel-overlay {
+  position: absolute;
+  bottom: 0; left: 0; right: 0;
+  padding: 2.5rem 1.5rem 1.5rem 1.5rem;
+  background: linear-gradient(0deg, rgba(10, 14, 26, 0.95) 0%, transparent 100%);
+  z-index: 10;
+}
+
+.carousel-badge {
+  display: inline-block;
+  background: rgba(201, 168, 76, 0.15);
+  border: 1px solid var(--accent);
+  color: var(--accent);
+  font-family: var(--font-cond);
+  font-weight: bold;
+  padding: 0.4rem 1.2rem;
+  border-radius: 2px;
+  font-size: 0.8rem;
+  letter-spacing: 2px;
+}
+
+/* --- RESPONSIVE --- */
+@media (max-width: 992px) {
+  .evento-layout-v2 {
+    grid-template-columns: 1fr;
+    gap: 3rem;
+  }
+  .evento-carousel-wrapper {
+    height: 350px;
+  }
+}
+
+
+
 /* ── MÉTRICAS CON FONDO ── */
+/* ═══════════════════════════════════════════
+   SECCIÓN MÉTRICAS (5 TARJETAS + CARRUSEL BANDERAS)
+   ═══════════════════════════════════════════ */
 .section-metricas {
   position: relative;
-  /* Reemplaza con tu imagen, por ejemplo: bg-metricas.jpg */
   background-image: linear-gradient(rgba(10, 11, 13, 0.8), rgba(10, 11, 13, 0.8)), 
                     url('../assets/avionencimadelotro.png');
   background-size: cover;
   background-position: center;
   background-attachment: fixed;
   overflow: hidden;
-  padding: 80px 0;
+  padding: 5rem 0 3rem 0;
+  z-index: 10;
 }
 
 .metricas-bg-text {
@@ -414,134 +495,146 @@ section {
   transform: translate(-50%,-50%);
   font-family: var(--font-display);
   font-size: clamp(8rem, 20vw, 18rem);
-  color: rgba(255,255,255,0.02); /* Un toque más visible sobre la imagen */
+  color: rgba(255,255,255,0.02);
   pointer-events: none; user-select: none;
   white-space: nowrap;
   z-index: 1;
 }
 
-.metricas-grid {
+/* --- GRID DE TARJETAS --- */
+.stats-cards-grid {
   position: relative;
   z-index: 2;
   display: grid;
   grid-template-columns: repeat(4, 1fr);
-  gap: 1px;
-  background: rgba(201, 168, 76, 0.15); /* Color de la rejilla */
-  border: 1px solid rgba(201, 168, 76, 0.2);
+  gap: 1.5rem;
   margin-bottom: 4rem;
 }
 
-.metrica-card {
-  /* Fondo semi-transparente para ver la imagen detrás */
+.stat-card {
   background: rgba(18, 20, 23, 0.75); 
-  backdrop-filter: blur(8px); /* Efecto de desenfoque táctico */
-  padding: 2.5rem 2rem;
-  display: flex; flex-direction: column;
-  align-items: flex-start; gap: 0.5rem;
-  transition: all 0.3s ease;
+  backdrop-filter: blur(8px);
+  border: 1px solid rgba(201, 168, 76, 0.2);
+  border-radius: 8px;
+  padding: 2.5rem 1rem;
+  text-align: center;
+  transition: transform 0.3s ease, background 0.3s ease;
 }
 
-.metrica-card:hover {
+.stat-card:hover {
+  transform: translateY(-5px);
   background: rgba(201, 168, 76, 0.1);
-  transform: translateY(-2px); /* Pequeño salto al pasar el mouse */
 }
 
-/* Ajuste para que los números resalten sobre el fondo */
-.metrica-num {
+/* La 5ta tarjeta ocupa todo el ancho */
+.stat-card-wide {
+  grid-column: span 2;
+  padding: 1.5rem;
+}
+
+.metrica-highlight {
+  background: rgba(201, 168, 76, 0.15);
+  border-color: var(--accent);
+  box-shadow: 0 10px 30px rgba(201, 168, 76, 0.1);
+}
+
+.stat-value {
   font-family: var(--font-display);
-  font-size: clamp(2.5rem, 5vw, 4rem);
+  font-size: 4.5rem;
   line-height: 1;
   color: var(--white);
   text-shadow: 0 5px 15px rgba(0,0,0,0.5);
+  margin-bottom: 0.5rem;
 }
 
-.metrica-label {
-  color: var(--white); /* Texto más claro para legibilidad */
-  opacity: 0.8;
-  font-family: var(--font-cond);
-  font-size: 0.75rem; 
-  font-weight: 600;
-  letter-spacing: 0.12em; 
-  text-transform: uppercase;
-}
-
-/* Highlight especial para la métrica principal */
-.metrica-highlight {
-  background: rgba(201, 168, 76, 0.2) !important;
-  border-left: 2px solid var(--accent);
-}
-
-/* NACIONES */
-.naciones-breakdown {
-  border: 1px solid var(--border);
-  padding: 2rem;
-  background: var(--panel);
-}
-.breakdown-title {
-  font-family: var(--font-cond);
-  font-size: 0.8rem; font-weight: 600;
-  letter-spacing: 0.2em; text-transform: uppercase;
-  color: var(--accent); margin-bottom: 1.5rem;
-}
-/* Contenedor principal de la lista */
-.naciones-list {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-  gap: 1rem;
-  margin-top: 1.5rem;
-}
-
-/* Item individual de nación */
-.nacion-item {
-  display: flex;
-  align-items: center;
-  background: rgba(255, 255, 255, 0.03);
-  border: 1px solid var(--border2);
-  padding: 1rem;
-  transition: all 0.3s ease;
-}
-
-/* Contenedor de la bandera para que no se deforme */
-.nacion-flag-container {
-  width: 50px;
-  height: 35px;
-  margin-right: 1rem;
-  overflow: hidden;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  background: rgba(0,0,0,0.2);
-  border-radius: 2px;
-}
-
-.nacion-flag-img {
-  width: 100%;
-  height: auto;
-  display: block;
-  object-fit: cover;
-}
-
-.nacion-info {
-  display: flex;
-  flex-direction: column;
-  flex-grow: 1;
-}
-
-.nacion-label {
-  font-family: var(--font-cond);
-  font-size: 0.85rem;
-  font-weight: 600;
-  color: var(--white);
-  text-transform: uppercase;
-}
-
-.nacion-count {
-  font-family: var(--font-display);
-  font-size: 1.5rem;
+.stat-card-wide .stat-value {
   color: var(--accent);
-  margin-left: 10px;
+  font-size: 5.5rem;
 }
-.nacion-loading { color: var(--dim); font-size: 0.85rem; }
+
+.stat-label {
+  font-family: var(--font-cond);
+  color: var(--dim);
+  letter-spacing: 2px;
+  font-size: 1rem;
+  text-transform: uppercase;
+}
+
+.stat-card-wide .stat-label {
+  color: var(--white);
+  font-size: 1.2rem;
+  letter-spacing: 4px;
+}
+
+/* --- CARRUSEL INFINITO DE BANDERAS (MARQUEE) --- */
+.flags-marquee-container {
+  position: relative;
+  z-index: 2;
+  width: 100%;
+  overflow: hidden;
+  background: rgba(0, 0, 0, 0.6); 
+  /* 👇 Reducimos el padding de 1.5rem a 0.8rem para que sea más angosto */
+  padding: 0.8rem 0; 
+  border-top: 1px solid rgba(255,255,255,0.05);
+  border-bottom: 1px solid rgba(255,255,255,0.05);
+  backdrop-filter: blur(5px);
+}
+
+.flags-marquee {
+  display: flex;
+  flex-wrap: nowrap; /* CRÍTICO: Evita que se amontonen en múltiples líneas */
+  width: max-content;
+  animation: marquee 35s linear infinite; 
+}
+
+.flags-marquee:hover {
+  animation-play-state: paused;
+}
+
+.marquee-item {
+  display: flex;
+  align-items: center;
+  gap: 15px;
+  padding: 0 3rem; 
+  border-right: 1px solid rgba(255,255,255,0.1);
+  flex-shrink: 0; /* CRÍTICO: Evita que las banderas desaparezcan al comprimirse */
+}
+
+.marquee-flag {
+  /* 👇 Reducimos el ancho de la bandera (antes era 65px) */
+  width: 45px; 
+  height: auto;
+  border-radius: 4px;
+  box-shadow: 0 4px 10px rgba(0,0,0,0.5);
+}
+
+.marquee-name {
+  font-family: var(--font-display);
+  /* 👇 Achicamos la letra (antes era 2rem) */
+  font-size: 1.4rem; 
+  color: rgba(255,255,255,0.8);
+  letter-spacing: 1px;
+  white-space: nowrap;
+}
+
+@keyframes marquee {
+  0% { transform: translateX(0); }
+  100% { transform: translateX(-50%); } 
+}
+
+/* --- RESPONSIVE --- */
+@media (max-width: 992px) {
+  .stats-cards-grid { grid-template-columns: repeat(2, 1fr); }
+  .stat-card-wide { grid-column: span 2; }
+}
+
+@media (max-width: 576px) {
+  .stats-cards-grid { grid-template-columns: 1fr; }
+  .stat-card-wide { grid-column: span 1; }
+  .marquee-item { padding: 0 2rem; }
+  .marquee-name { font-size: 1.5rem; }
+  .marquee-flag { width: 50px; }
+}
 
 /* ── PARTICIPANTES ── */
 .section-participantes { background: var(--dark); }

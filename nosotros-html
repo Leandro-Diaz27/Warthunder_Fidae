@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Quiénes Somos — FIDAE War Thunder</title>
+  <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Barlow+Condensed:wght@300;400;600;700&family=Barlow:wght@300;400;500;700&display=swap" rel="stylesheet" />
+  
+  <link rel="stylesheet" href="css/style.css" />
+  <link rel="stylesheet" href="css/nosotros.css" />
+</head>
+<body class="page-nosotros">
+  <div class="noise-overlay"></div>
+  
+  <nav class="nav scrolled" id="nav">
+    <div class="nav-inner">
+      <div class="nav-logo">
+        <span class="logo-fidae">FIDAE</span>
+        <span class="logo-wt">× WAR THUNDER</span>
+      </div>
+      <ul class="nav-links">
+        <li><a href="index.html" class="nav-cta">← Volver al Inicio</a></li>
+      </ul>
+    </div>
+  </nav>
+
+  <header class="nosotros-hero">
+    <div class="container">
+      <span class="section-tag">// EL EQUIPO</span>
+      <h1 class="section-title">Quiénes hacen esto posible</h1>
+      <p class="hero-desc">Conoce a los pilotos detrás de la organización, sus roles tácticos y sus aeronaves de cabecera.</p>
+    </div>
+  </header>
+
+  <main class="container">
+    <div class="team-grid">
+      
+      <div class="member-card opfor">
+        <div class="member-image">
+          <img src="assets/avionescarapela.png" alt="F-16">
+        </div>
+        <div class="member-content">
+          <div class="member-role">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2L2 16.5H6.5L12 10L17.5 16.5H22L12 2Z"/></svg>
+            <span>AGRESOR / OPFOR</span>
+          </div>
+          <h3>EL_FANTASMA_00</h3>
+          <p class="member-planes">F-16C Block 50 / MiG-29G</p>
+          
+          <div class="member-badges">
+            <img src="assets/thumb1.jpg" alt="Insignia 1">
+            <img src="assets/thumb2.jpg" alt="Insignia 2">
+            <img src="assets/thumb3.jpg" alt="Insignia 3">
+            <img src="assets/thumb4.jpg" alt="Insignia 4">
+          </div>
+        </div>
+      </div>
+
+      <div class="member-card">
+        <div class="member-image">
+          <img src="assets/su34.jpg" alt="Su-34 Fullback">
+        </div>
+        <div class="member-content">
+          <div class="member-role">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2L2 16.5H6.5L12 10L17.5 16.5H22L12 2Z"/></svg>
+            <span>CAS / BOMBARDERO</span>
+          </div>
+          <h3>DEATH_SCYTHE</h3>
+          <p class="member-planes">Su-34 Fullback / F-15E Strike Eagle</p>
+          
+          <div class="member-badges">
+            <img src="assets/thumb1.jpg" alt="Insignia 1">
+            <img src="assets/thumb2.jpg" alt="Insignia 2">
+          </div>
+        </div>
+      </div>
+
+      <div class="member-card">
+        <div class="member-image">
+          <img src="assets/mirage.jpg" alt="Mirage 2000">
+        </div>
+        <div class="member-content">
+          <div class="member-role">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2L2 16.5H6.5L12 10L17.5 16.5H22L12 2Z"/></svg>
+            <span>INTERCEPTOR MULTIROL</span>
+          </div>
+          <h3>STERNENJÄGER</h3>
+          <p class="member-planes">Mirage 2000-5F / MiG-29G</p>
+          
+          <div class="member-badges">
+            <img src="assets/thumb1.jpg" alt="Insignia 1">
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </main>
+
+</body>
+</html>

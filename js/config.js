@@ -13,5 +13,5 @@ const CONFIG = {
   YOUTUBE_URL:   "https://youtube.com/@tucuenta",
 
   // ── EVENTO ──
-  HORAS_EVENTO: 48,           // Duración total del evento
+  HORAS_EVENTO: 6,           // Duración total del evento
 };
