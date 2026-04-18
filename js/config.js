@@ -8,7 +8,7 @@ const CONFIG = {
   CLAN_NAME: "SternenJäger",   // <-- Pon el nombre de tu clan aquí
 
   // ── REDES SOCIALES ──
-  TIKTOK_URL:    "https://tiktok.com/@tucuenta",
+  TIKTOK_URL:    "https://www.tiktok.com/@z3kken?_r=1&_t=ZS-95eVkgbEQKe",
   INSTAGRAM_URL: "https://instagram.com/tucuenta",
   YOUTUBE_URL:   "https://youtube.com/@tucuenta",
 

@@ -1014,28 +1014,28 @@ section {
   text-shadow: 0 0 10px rgba(201, 168, 76, 0.3);
 }
 
-.social-links { 
-  display: flex; 
-  flex-direction: column; 
-  gap: 0.8rem; 
+/* Contenedor general de los links */
+.social-links {
+  display: flex;
+  flex-direction: column;
+  gap: 15px; /* Espacio entre TikTok y Discord */
 }
 
+/* El link que envuelve al icono y al texto */
 .social-link {
-  display: inline-flex; 
-  align-items: center; 
-  gap: 0.7rem;
-  font-family: var(--font-cond); 
-  font-size: 0.85rem; 
-  font-weight: 600;
-  letter-spacing: 0.1em; 
-  text-transform: uppercase;
-  color: var(--dim); 
-  transition: all 0.3s ease;
+  display: flex;
+  align-items: center; /* Alinea icono y texto verticalmente */
+  text-decoration: none;
+  color: inherit;
+  font-family: sans-serif; /* O la que estés usando */
 }
 
-.social-link:hover { 
-  color: var(--white); 
-  transform: translateX(5px); /* Desplazamiento sutil al pasar el mouse */
+/* El truco mágico: limitar el tamaño del SVG */
+.social-link svg {
+  width: 24px;  /* Ajusta este número según qué tan pequeño lo quieras */
+  height: 24px;
+  margin-right: 10px; /* Espacio entre el icono y la palabra */
+  flex-shrink: 0; /* Evita que el icono se achique si el texto es largo */
 }
 
 .footer-bottom {

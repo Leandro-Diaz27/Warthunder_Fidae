@@ -398,6 +398,7 @@ const AVIONES_DATABASE = [
   { name: "AV-8B NA", country: "usa" },
   { name: "F-14A Early", country: "usa" },
   { name: "F-16A Block 10", country: "usa" },
+  { name: "F-16C PoBIT", country: "usa" },
 
   // USSR / Rusia
   { name: "MiG-21bis (Premium)", country: "ussr" },
