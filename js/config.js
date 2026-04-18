@@ -9,6 +9,7 @@ const CONFIG = {
 
   // ── REDES SOCIALES ──
   TIKTOK_URL:    "https://www.tiktok.com/@z3kken?_r=1&_t=ZS-95eVkgbEQKe",
+  DISCORD_URL:   "https://discord.gg/6JQ8cu9FRR",
 
   // ── EVENTO ──
   HORAS_EVENTO: 6,           // Duración total del evento
