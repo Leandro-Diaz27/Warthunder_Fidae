@@ -45,13 +45,7 @@
         <li><a href="#participantes">Participantes</a></li>
         <li><a href="#auspiciadores">Auspiciadores</a></li>
         <li><a href="#aplicar" class="nav-cta">Aplicar</a></li>
-        <a href="https://discord.gg/EnA5UAYGPx" class="social-link" id="linkDiscord" target="_blank" rel="noopener">
-          <svg viewBox="0 0 24 24" fill="currentColor" style="width: 20px; vertical-align: middle;">
-            <path
-              d="M20.317 4.37a19.791 19.791 0 00-4.885-1.515.074.074 0 00-.079.037c-.21.375-.444.864-.608 1.25a18.27 18.27 0 00-5.487 0 11.721 11.721 0 00-.617-1.25.077.077 0 00-.079-.037A19.736 19.736 0 003.677 4.37a.07.07 0 00-.032.027C.533 9.046-.32 13.58.099 18.057a.082.082 0 00.031.057 19.9 19.9 0 005.993 3.03.078.078 0 00.084-.028 14.09 14.09 0 001.226-1.994.076.076 0 00-.041-.106 13.107 13.107 0 01-1.872-.892.077.077 0 01-.008-.128 10.2 10.2 0 00.372-.292.074.074 0 01.077-.01c3.928 1.793 8.18 1.793 12.062 0a.074.074 0 01.078.01c.12.098.246.198.373.292a.077.077 0 01-.006.127 12.299 12.299 0 01-1.873.892.077.077 0 00-.041.107c.36.698.772 1.362 1.225 1.993a.076.076 0 00.084.028 19.839 19.839 0 006.002-3.03.077.077 0 00.032-.054c.5-5.177-.838-9.674-3.549-13.66a.061.061 0 00-.031-.03zM8.02 15.33c-1.183 0-2.157-1.085-2.157-2.419 0-1.333.955-2.419 2.157-2.419 1.21 0 2.176 1.096 2.157 2.42 0 1.333-.956 2.418-2.157 2.418zm7.975 0c-1.183 0-2.157-1.085-2.157-2.419 0-1.333.955-2.419 2.157-2.419 1.21 0 2.176 1.096 2.157 2.42 0 1.333-.946 2.418-2.157 2.418z" />
-          </svg>
-          Discord
-        </a>
+        <p>https://discord.gg/6JQ8cu9FRR</p>
       </ul>
       <button class="nav-hamburger" id="hamburger" aria-label="Menu">
         <span></span><span></span><span></span>
@@ -343,116 +337,34 @@
     </div>
   </section>
 
-  <!-- ░░ FORMULARIO APLICAR ░░ -->
-  <section class="section-aplicar" id="aplicar">
-    <div class="container">
-      <div class="section-header">
-        <h2 class="section-title">Aplica al<br />evento</h2>
-        <p class="section-desc">Completa el formulario para registrarte en la primera FIDAE de War Thunder. Los cupos
-          son limitados.</p>
-      </div>
-
-      <div class="form-container">
-        <div class="form-glow"></div>
-        <form class="apply-form" id="applyForm" novalidate>
-          <div class="form-row">
-            <div class="form-group">
-              <label for="username">Nombre de usuario en War Thunder</label>
-              <input type="text" id="username" name="username" placeholder="Tu_Nick_WT" autocomplete="off" required />
-              <span class="form-error" id="err-username"></span>
-            </div>
-          </div>
-
-          <div class="form-row two-col">
-            <div class="form-group">
-              <label for="nacion">Nación del avión</label>
-              <div class="select-wrap">
-                <select id="nacion" name="nacion" required>
-                  <option value="">— Selecciona —</option>
-                  <option value="usa">🇺🇸 Estados Unidos</option>
-                  <option value="germany">🇩🇪 Alemania</option>
-                  <option value="ussr">🇷🇺 URSS / Rusia</option>
-                  <option value="uk">🇬🇧 Gran Bretaña</option>
-                  <option value="japan">🇯🇵 Japón</option>
-                  <option value="china">🇨🇳 China</option>
-                  <option value="italy">🇮🇹 Italia</option>
-                  <option value="france">🇫🇷 Francia</option>
-                  <option value="sweden">🇸🇪 Suecia</option>
-                  <option value="israel">🇮🇱 Israel</option>
-                </select>
-                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                  <polyline points="6 9 12 15 18 9" />
-                </svg>
-              </div>
-              <span class="form-error" id="err-nacion"></span>
-            </div>
-
-            <div class="form-group">
-              <label for="avion">Avión</label>
-              <input type="text" id="avion" placeholder="Escribe un avión (ej: F-16)" autocomplete="off">
-              <div id="apiResults"></div>
-            </div>
-          </div>
-
-          <div class="form-row">
-            <div class="form-group">
-              <label for="clan">Clan / Escuadrilla (opcional)</label>
-              <input type="text" id="clan" name="clan" placeholder="[CLAN]" autocomplete="off" />
-            </div>
-          </div>
-
-          <div class="form-submit">
-            <button type="submit" class="btn-submit" id="btnSubmit">
-              <span class="btn-text">Registrarme en FIDAE</span>
-              <span class="btn-loading" style="display:none">Enviando...</span>
-              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                <path d="M5 12h14M12 5l7 7-7 7" />
-              </svg>
-            </button>
-          </div>
-
-          <div class="form-success" id="formSuccess" style="display:none">
-            <div class="success-icon">✓</div>
-            <h3>¡Registro exitoso, piloto!</h3>
-            <p>Tu aeronave ha sido registrada en la primera FIDAE de War Thunder. Mantente atento a las instrucciones
-              del evento.</p>
-          </div>
-        </form>
-      </div>
-    </div>
-  </section>
-
-  <footer class="footer">
-    <div class="container">
-      <div class="footer-top">
-        <div class="footer-brand">
-          <div class="footer-logo">
-            <span class="logo-fidae">FIDAE</span>
-            <span class="logo-wt">× WAR THUNDER</span>
-          </div>
-          <p>El primer evento FIDAE en el universo de War Thunder.<br />Attack the D point.</p>
+ <footer class="footer">
+  <div class="container">
+    <div class="footer-top">
+      <div class="footer-brand">
+        <div class="footer-logo">
+          <span class="logo-fidae">FIDAE</span>
+          <span class="logo-wt">× WAR THUNDER</span>
         </div>
-        <div class="footer-links">
-          <h4>Síguenos</h4>
-          <div class="social-links">
-            <a href="" class="social-link" id="linkTiktok" target="_blank" rel="noopener">
-              <svg viewBox="0 0 24 24" fill="currentColor" width="24" height="24"
-                style="display: inline-block; vertical-align: middle; flex-shrink: 0;">
-                <path
-                  d="M19.59 6.69a4.83 4.83 0 01-3.77-4.25V2h-3.45v13.67a2.89 2.89 0 01-2.88 2.5 2.89 2.89 0 01-2.89-2.89 2.89 2.89 0 012.89-2.89c.28 0 .54.04.79.1V9.01a6.27 6.27 0 00-.79-.05 6.34 6.34 0 00-6.34 6.34 6.34 6.34 0 006.34 6.34 6.34 6.34 0 006.33-6.34V9.01a8.16 8.16 0 004.77 1.52V7.1a4.85 4.85 0 01-1-.41z" />
-              </svg>
-              <span>TikTok</span>
-            </a>
-          </div>
+        <p>El primer evento FIDAE en el universo de War Thunder.<br />Attack the D point.</p>
+      </div>
+      <div class="footer-links">
+        <h4>Síguenos</h4>
+        <div class="social-links">
+          <a href="https://www.tiktok.com/@z3kken" class="social-link" id="linkTiktok" target="_blank" rel="noopener">
+            <svg viewBox="0 0 24 24" fill="currentColor" width="24" height="24" style="display: inline-block; vertical-align: middle; flex-shrink: 0;">
+              <path d="M19.59 6.69a4.83 4.83 0 01-3.77-4.25V2h-3.45v13.67a2.89 2.89 0 01-2.88 2.5 2.89 2.89 0 01-2.89-2.89 2.89 2.89 0 012.89-2.89c.28 0 .54.04.79.1V9.01a6.27 6.27 0 00-.79-.05 6.34 6.34 0 00-6.34 6.34 6.34 6.34 0 006.34 6.34 6.34 6.34 0 006.33-6.34V9.01a8.16 8.16 0 004.77 1.52V7.1a4.85 4.85 0 01-1-.41z" />
+            </svg>
+            <span>TikTok</span>
+          </a>
         </div>
       </div>
-      <div class="footer-bottom">
-        <p>© 2026 FIDAE × War Thunder Event — Organizado por <span id="clanFooter">[SternenJäger]</span></p>
-        <p class="footer-disclaimer">War Thunder es marca registrada de Gaijin Entertainment. Este es un evento
-          comunitario no oficial.</p>
-      </div>
     </div>
-  </footer>
+    <div class="footer-bottom">
+      <p>© 2026 FIDAE × War Thunder Event — Organizado por <span id="clanFooter">[SternenJäger]</span></p>
+      <p class="footer-disclaimer">War Thunder es marca registrada de Gaijin Entertainment. Este es un evento comunitario no oficial.</p>
+    </div>
+  </div>
+</footer>
 
   <!-- Supabase JS SDK -->
   <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>

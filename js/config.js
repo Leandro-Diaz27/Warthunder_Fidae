@@ -9,8 +9,7 @@ const CONFIG = {
 
   // ── REDES SOCIALES ──
   TIKTOK_URL:    "https://www.tiktok.com/@z3kken?_r=1&_t=ZS-95eVkgbEQKe",
-  INSTAGRAM_URL: "https://instagram.com/tucuenta",
-  YOUTUBE_URL:   "https://youtube.com/@tucuenta",
+  DISCORD_URL:   "https://discord.gg/Ak6AtjUQcg",
 
   // ── EVENTO ──
   HORAS_EVENTO: 6,           // Duración total del evento
