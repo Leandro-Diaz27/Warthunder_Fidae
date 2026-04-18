@@ -178,6 +178,8 @@ select, input, textarea { font-family: inherit; }
   background: var(--white); transition: 0.3s;
 }
 
+
+
 /* ── HERO ── */
 .hero {
   position: relative; z-index: 1;
@@ -455,7 +457,7 @@ section {
   border: 1px solid var(--border2);
   box-shadow: 0 20px 50px rgba(0,0,0,0.5);
   
-  /* 👇 ESTA ES LA LÍNEA NUEVA 👇 */
+
   transform: translateY(-80px); /* Cambia -40px por -60px si lo quieres aún más arriba */
 }
 .css-carousel {
@@ -480,6 +482,15 @@ section {
 .slide-1 { animation-delay: 0s; }
 .slide-2 { animation-delay: 5s; }
 .slide-3 { animation-delay: 10s; }
+.slide-4 { animation-delay: 15s; }
+.slide-5 { animation-delay: 20s; }
+.slide-6 { animation-delay: 25s; }
+.slide-7 { animation-delay: 30s; }
+.slide-8 { animation-delay: 35s; }
+.slide-9 { animation-delay: 40s; }
+.slide-10 { animation-delay: 45s; }
+.slide-11 { animation-delay: 50s; }
+.slide-12 { animation-delay: 55s; }
 
 @keyframes fadeCarousel {
   0%, 25% { opacity: 1; transform: scale(1); }
@@ -529,7 +540,7 @@ section {
 .section-metricas {
   position: relative;
   background-image: linear-gradient(rgba(10, 11, 13, 0.8), rgba(10, 11, 13, 0.8)), 
-                    url('../assets/avionencimadelotro.png');
+                    url('../assets/b25.png');
   background-size: cover;
   background-position: center;
   background-attachment: fixed;
@@ -723,7 +734,7 @@ section {
     position: relative;
     /* REEMPLAZA 'tu-imagen.jpg' por el nombre de tu archivo en la carpeta assets */
     background-image: linear-gradient(rgba(10, 11, 13, 0.8), rgba(10, 11, 13, 0.9)), 
-                      url('../assets/f4blancoynegro.jpg'); 
+                      url('../assets/j2.png'); 
     background-size: cover;
     background-position: center;
     background-attachment: fixed; /* Efecto Parallax: el fondo se queda quieto al bajar */
@@ -759,6 +770,17 @@ section {
     letter-spacing: 0.1em;
     color: var(--white);
     text-shadow: 0 0 15px rgba(255, 255, 255, 0.2);
+}
+
+.BtnConocenos {
+  padding: 0.5rem 1.2rem;
+  border: 1px solid var(--accent) !important;
+  color: var(--accent);
+  transition: background 0.2s, color 0.2s !important;
+}
+.BtnConocenos:hover {
+  background: var(--accent) !important;
+  color: var(--black) ;
 }
 
 /* Contenedor de sugerencias */

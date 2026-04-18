@@ -1,0 +1,251 @@
+:root {
+    --primary: #d4af37; /* Dorado táctico */
+    --accent: #ff3e3e;  /* Rojo OPFOR */
+    --bg-dark: #0a0b0d;
+    --card-bg: #14161a;
+    --text-main: #e0e0e0;
+    --text-dim: #888;
+    --font-heading: 'Bebas Neue', sans-serif;
+    --font-condensed: 'Barlow Condensed', sans-serif;
+}
+
+body {
+    background-color: var(--bg-dark);
+    color: var(--text-main);
+    font-family: 'Barlow', sans-serif;
+    margin: 0;
+    overflow-x: hidden;
+}
+
+/* Efectos de fondo */
+.noise-overlay {
+    position: fixed;
+    top: 0; left: 0; width: 100%; height: 100%;
+    background: url('https://grainy-gradients.vercel.app/noise.svg');
+    opacity: 0.05;
+    pointer-events: none;
+    z-index: 10;
+}
+
+
+@keyframes scan {
+    0% { top: -10%; }
+    100% { top: 110%; }
+}
+
+/* Navegación */
+.nav-minimal {
+    padding: 20px 0;
+    border-bottom: 1px solid rgba(255,255,255,0.1);
+}
+
+.nav-container {
+    max-width: 1200px;
+    margin: 0 auto;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 0 20px;
+}
+
+.logo-fidae { font-family: var(--font-heading); font-size: 1.5rem; letter-spacing: 2px; }
+.logo-wt { color: var(--text-dim); font-size: 0.9rem; margin-left: 10px; }
+
+.back-link {
+    color: var(--primary);
+    text-decoration: none;
+    font-family: var(--font-condensed);
+    font-weight: 700;
+    font-size: 0.9rem;
+    letter-spacing: 1px;
+    transition: 0.3s;
+}
+
+.back-link:hover { opacity: 0.7; transform: translateX(-5px); }
+
+/* Hero Section */
+.hero-tactical {
+    padding: 10px 0;
+    text-align: center;
+}
+
+.tag { color: var(--primary); font-family: var(--font-condensed); letter-spacing: 4px; font-weight: 700; }
+.main-title { 
+    font-family: var(--font-heading); 
+    font-size: clamp(3rem, 8vw, 5rem); 
+    margin: 10px 0;
+    line-height: 1;
+}
+.subtitle { color: var(--text-dim); max-width: 600px; margin: 0 auto; }
+
+/* Grid de Pilotos */
+.container { max-width: 1200px; margin: 0 auto; padding: 0 20px; }
+
+.pilot-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+    gap: 30px;
+    padding-bottom: 80px;
+}
+
+/* Tarjetas */
+.pilot-card {
+    background: var(--card-bg);
+    border: 1px solid rgba(255,255,255,0.05);
+    position: relative;
+    transition: transform 0.3s ease, border-color 0.3s ease;
+    clip-path: polygon(0 0, 100% 0, 100% 95%, 95% 100%, 0 100%);
+}
+
+.pilot-card:hover {
+    transform: translateY(-10px);
+    border-color: var(--primary);
+}
+
+.pilot-card.opfor:hover { border-color: var(--accent); }
+
+.card-header {
+    background: rgba(255,255,255,0.03);
+    padding: 15px 20px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.callsign {
+    font-family: var(--font-heading);
+    font-size: 1.4rem;
+    letter-spacing: 1px;
+}
+
+.pilot-image-wrapper {
+    height: 200px;
+    overflow: hidden;
+    background: #000;
+}
+
+.pilot-img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    opacity: 0.7;
+    transition: 0.5s;
+    filter: grayscale(0.5);
+}
+
+.pilot-card:hover .pilot-img {
+    opacity: 1;
+    filter: grayscale(0);
+    transform: scale(1.05);
+}
+
+.pilot-info {
+    padding: 25px;
+}
+
+.badge-role {
+    display: inline-block;
+    background: rgba(212, 175, 55, 0.1);
+    color: var(--primary);
+    padding: 4px 12px;
+    font-size: 0.7rem;
+    font-weight: 700;
+    border-radius: 2px;
+    margin-bottom: 15px;
+    font-family: var(--font-condensed);
+}
+
+.opfor .badge-role {
+    background: rgba(255, 62, 62, 0.1);
+    color: var(--accent);
+}
+
+.description {
+    font-size: 0.9rem;
+    line-height: 1.6;
+    color: #bbb;
+    margin-bottom: 20px;
+    min-height: 70px;
+}
+
+.fav-plane {
+    border-left: 2px solid var(--primary);
+    padding-left: 15px;
+    margin-bottom: 20px;
+}
+
+.fav-plane small {
+    display: block;
+    font-size: 0.65rem;
+    color: var(--text-dim);
+    letter-spacing: 1px;
+}
+
+.plane-name {
+    font-family: var(--font-condensed);
+    font-weight: 700;
+    font-size: 1.1rem;
+}
+
+.badges-row {
+    display: flex;
+    gap: 10px;
+}
+
+.badges-row img {
+    width: 35px;
+    height: 35px;
+    border-radius: 50%;
+    border: 1px solid rgba(255,255,255,0.2);
+    filter: saturate(0.5);
+}
+
+/* Contenedor principal del video */
+.video-background {
+    position: fixed; /* Fijo para que no se mueva al hacer scroll */
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: -2; /* Detrás de todo */
+    overflow: hidden;
+    background-color: #000; /* Color de fondo si el video falla */
+}
+
+.video-background video {
+    min-width: 100%;
+    min-height: 100%;
+    width: auto;
+    height: auto;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    object-fit: cover; /* Evita que el video se estire */
+    filter: brightness(0.4) grayscale(1); /* Lo oscurece un poco para que el texto resalte */
+}
+
+/* Capa de color encima del video para asegurar contraste */
+.video-overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: radial-gradient(circle, rgba(0,0,0,0.2) 0%, rgba(10,11,13,0.8) 100%);
+    z-index: -1;
+}
+
+/* Asegura que el contenido esté por encima */
+.page-content {
+    position: relative;
+    z-index: 1;
+}
+
+/* Modificación opcional: Haz que tus tarjetas sean un poco más oscuras 
+   para que no compitan con el video de fondo */
+.pilot-card {
+    background: rgba(20, 22, 26, 0.85) !important; /* Semi-transparente */
+    backdrop-filter: blur(5px); /* Efecto de vidrio esmerilado */
+    border: 1px solid rgba(255, 255, 255, 0.1);
+}
