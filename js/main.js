@@ -735,7 +735,12 @@ function renderNaciones(counts, total) {
   marquee.innerHTML = flagsHtml + flagsHtml;
 }
 
-// ── CARGAR PARTICIPANTES ──
+// ── VARIABLES GLOBALES DE PAGINACIÓN ──
+let ALL_PARTICIPANTES = [];
+let currentPage = 1;
+const ROWS_PER_PAGE = 8; // <--- AQUÍ ESTÁ EL CAMBIO (antes era 10)
+
+// ── CARGAR PARTICIPANTES (Descarga los datos) ──
 async function loadParticipantes() {
   const tbody = document.getElementById("tablaBody");
   if (!tbody) return;
@@ -746,36 +751,115 @@ async function loadParticipantes() {
   }
 
   try {
+    // Traemos hasta 500 registros para paginarlos localmente
     const { data, error } = await window.db
       .from("registros")
       .select("id, username, nacion, avion, clan, created_at")
       .order("created_at", { ascending: false })
-      .limit(50);
+      .limit(500); 
 
     if (error) throw error;
 
-    if (!data || data.length === 0) {
+    ALL_PARTICIPANTES = data || [];
+
+    if (ALL_PARTICIPANTES.length === 0) {
       tbody.innerHTML = `<tr><td colspan="5" class="tabla-loading">Aún no hay participantes. ¡Sé el primero en registrarte!</td></tr>`;
+      document.getElementById("paginationControls").innerHTML = "";
       return;
     }
 
-    tbody.innerHTML = data.map((row, i) => {
-      const nacion = NACIONES[row.nacion] || { label: row.nacion, flag: "🌍" };
-      return `
-        <tr>
-          <td style="color:var(--dim);opacity:0.5">${String(i + 1).padStart(2, "0")}</td>
-          <td>${escapeHtml(row.username)}${row.clan ? ` <span style="color:var(--accent);font-size:0.75rem">${escapeHtml(row.clan)}</span>` : ""}</td>
-          <td>${nacion.flag} ${nacion.label}</td>
-          <td>${escapeHtml(row.avion)}</td>
-          <td><span class="status-badge">Confirmado</span></td>
-        </tr>
-      `;
-    }).join("");
+    // Dibujamos la primera página
+    renderTablePage(1);
 
   } catch (e) {
     console.error("Error cargando participantes:", e);
     tbody.innerHTML = `<tr><td colspan="5" class="tabla-loading">Error al cargar participantes.</td></tr>`;
   }
+}
+
+// ── DIBUJAR PÁGINA ESPECÍFICA ──
+window.renderTablePage = function(page) {
+  const tbody = document.getElementById("tablaBody");
+  const totalPages = Math.ceil(ALL_PARTICIPANTES.length / ROWS_PER_PAGE);
+  
+  // Limites de seguridad para la página
+  if (page < 1) page = 1;
+  if (page > totalPages) page = totalPages;
+  currentPage = page;
+
+  // Calculamos desde dónde hasta dónde cortar el array
+  const startIndex = (page - 1) * ROWS_PER_PAGE;
+  const endIndex = startIndex + ROWS_PER_PAGE;
+  const paginatedData = ALL_PARTICIPANTES.slice(startIndex, endIndex);
+
+  // 1. Generamos el HTML de los participantes reales
+  let html = paginatedData.map((row, i) => {
+    const nacion = (typeof NACIONES !== 'undefined' && NACIONES[row.nacion]) 
+                   ? NACIONES[row.nacion] 
+                   : { label: row.nacion, flag: "🌍" };
+    
+    const globalIndex = startIndex + i + 1;
+
+    return `
+      <tr>
+        <td style="color:var(--dim);opacity:0.5">${String(globalIndex).padStart(2, "0")}</td>
+        <td>${escapeHtml(row.username)}${row.clan ? ` <span style="color:var(--accent);font-size:0.75rem">${escapeHtml(row.clan)}</span>` : ""}</td>
+        <td>${nacion.flag} ${nacion.label}</td>
+        <td>${escapeHtml(row.avion)}</td>
+        <td><span class="status-badge">Confirmado</span></td>
+      </tr>
+    `;
+  }).join("");
+
+// 2. Rellenamos con filas "invisibles" si hay menos de 7 registros
+  const filasFaltantes = ROWS_PER_PAGE - paginatedData.length;
+  for (let j = 0; j < filasFaltantes; j++) {
+    // Le agregamos el status-badge para que la altura sea EXACTAMENTE igual a una fila real
+    html += `
+      <tr style="visibility: hidden; pointer-events: none;">
+        <td>00</td>
+        <td>Espacio</td>
+        <td>-</td>
+        <td>-</td>
+        <td><span class="status-badge">Confirmado</span></td>
+      </tr>
+    `;
+  }
+
+  // 3. Inyectamos todo el HTML a la tabla
+  tbody.innerHTML = html;
+
+  // Dibujar los controles de Anterior/Siguiente
+  renderPaginationControls(totalPages);
+};
+
+// ── DIBUJAR BOTONES DE PAGINACIÓN ──
+function renderPaginationControls(totalPages) {
+  const container = document.getElementById("paginationControls");
+  if (!container) return;
+
+  // Si hay 7 o menos participantes, no se necesita paginación
+  if (totalPages <= 1) {
+    container.innerHTML = "";
+    return;
+  }
+
+  // Generamos los botones
+  let html = `
+    <button class="page-btn" ${currentPage === 1 ? 'disabled' : ''} onclick="renderTablePage(${currentPage - 1})">
+      &laquo; Anterior
+    </button>
+  `;
+  
+  html += `<span class="page-info">Pág ${currentPage} de ${totalPages}</span>`;
+
+  html += `
+    <button class="page-btn" ${currentPage === totalPages ? 'disabled' : ''} onclick="renderTablePage(${currentPage + 1})">
+      Siguiente &raquo;
+    </button>
+  `;
+
+  container.innerHTML = html;
 }
 
 // ── FORMULARIO ──

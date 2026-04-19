@@ -186,7 +186,7 @@ select, input, textarea { font-family: inherit; }
   min-height: 100vh;
   display: flex; flex-direction: column;
   justify-content: center; align-items: flex-start;
-  padding: 8rem 2rem 4rem;
+  padding: 10rem 2rem 4rem;
   max-width: 1160px; margin: 0 auto;
 }
 .hero-badge {
@@ -369,9 +369,9 @@ section {
   /* Esto es lo que tapa el video: */
   background: var(--black); 
   /* Opcional: añade un poco de espacio arriba y abajo si lo ves muy pegado */
-  padding: 2rem 0; 
+  padding: 4rem 0; 
   /* Opcional: una línea sutil arriba para separar la sección */
-  border-top: 1px solid var(--border);
+  border-top: 2px solid var(--border);
 }
 .evento-layout-v2 {
   display: grid;
@@ -545,7 +545,7 @@ section {
   background-position: center;
   background-attachment: fixed;
   overflow: hidden;
-  padding: 5rem 0 3rem 0;
+  padding: 12rem 0 3rem 0;
   z-index: 10;
 }
 
@@ -581,7 +581,7 @@ section {
 }
 
 .stat-card:hover {
-  transform: translateY(-5px);
+  
   background: rgba(201, 168, 76, 0.1);
 }
 
@@ -696,37 +696,57 @@ section {
 }
 
 /* ── PARTICIPANTES ── */
+/* ── ESTILOS DE TABLA EXISTENTES ── */
 .section-participantes { background: var(--dark); }
 .tabla-wrap { overflow-x: auto; }
-.tabla-pilotos {
-  width: 100%; border-collapse: collapse;
-  font-family: var(--font-cond);
-}
-.tabla-pilotos thead th {
-  font-size: 0.7rem; font-weight: 600;
-  letter-spacing: 0.2em; text-transform: uppercase;
-  color: var(--accent); text-align: left;
-  padding: 0.9rem 1rem;
-  border-bottom: 1px solid var(--border2);
-}
-.tabla-pilotos tbody tr {
-  border-bottom: 1px solid var(--border);
-  transition: background 0.15s;
-}
+.tabla-pilotos { width: 100%; border-collapse: collapse; font-family: var(--font-cond); }
+.tabla-pilotos thead th { font-size: 0.7rem; font-weight: 600; letter-spacing: 0.2em; text-transform: uppercase; color: var(--accent); text-align: left; padding: 0.9rem 1rem; border-bottom: 1px solid var(--border2); }
+.tabla-pilotos tbody tr { border-bottom: 1px solid var(--border); transition: background 0.15s; }
 .tabla-pilotos tbody tr:hover { background: rgba(255,255,255,0.03); }
-.tabla-pilotos tbody td {
-  padding: 0.9rem 1rem;
-  font-size: 0.85rem; color: var(--dim);
-}
+.tabla-pilotos tbody td { padding: 0.9rem 1rem; font-size: 0.85rem; color: var(--dim); }
 .tabla-pilotos tbody td:nth-child(2) { color: var(--white); font-weight: 600; }
 .tabla-loading { text-align: center; color: var(--dim); padding: 2rem !important; }
-.status-badge {
-  display: inline-block;
-  padding: 0.2rem 0.6rem;
-  font-size: 0.65rem; letter-spacing: 0.1em; text-transform: uppercase;
-  background: rgba(76,168,201,0.1);
-  color: var(--accent2);
-  border: 1px solid rgba(76,168,201,0.2);
+.status-badge { display: inline-block; padding: 0.2rem 0.6rem; font-size: 0.65rem; letter-spacing: 0.1em; text-transform: uppercase; background: rgba(76,168,201,0.1); color: var(--accent2); border: 1px solid rgba(76,168,201,0.2); }
+
+/* ── NUEVO: ESTILOS DE PAGINACIÓN ── */
+.pagination-controls {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 15px;
+  margin-top: 20px;
+  padding: 10px 0;
+}
+
+.page-btn {
+  background: var(--panel);
+  border: 1px solid rgba(255,255,255,0.1);
+  color: var(--white);
+  padding: 8px 16px;
+  border-radius: 4px;
+  cursor: pointer;
+  font-family: var(--font-cond);
+  font-weight: 600;
+  text-transform: uppercase;
+  transition: all 0.3s ease;
+}
+
+.page-btn:hover:not(:disabled) {
+  border-color: var(--accent);
+  color: var(--accent);
+  background: rgba(201,168,76,0.05);
+}
+
+.page-btn:disabled {
+  opacity: 0.3;
+  cursor: not-allowed;
+}
+
+.page-info {
+  font-family: var(--font-cond);
+  color: var(--dim);
+  font-size: 0.9rem;
+  letter-spacing: 1px;
 }
 
 /* ── AUSPICIADORES CON FONDO ── */
@@ -1048,11 +1068,15 @@ section {
   z-index: 2;
 }
 
-.footer-bottom p {
-  font-size: 0.75rem; 
-  color: var(--dim);
-  font-family: var(--font-cond); 
-  letter-spacing: 0.05em;
+.footer-bottom {
+  display: flex; 
+  flex-direction: column; /* Apila los textos uno debajo del otro */
+  justify-content: center; /* Centra el bloque verticalmente */
+  align-items: center; /* Centra el bloque horizontalmente */
+  text-align: center; /* Asegura que el texto por dentro también esté centrado */
+  gap: 0.5rem; /* Un espacio sutil y elegante entre ambas líneas */
+  position: relative;
+  z-index: 2;
 }
 
 .footer-disclaimer { 
@@ -1097,3 +1121,76 @@ section {
   .hero { padding: 7rem 1.5rem 3rem; }
   .footer-bottom { flex-direction: column; align-items: flex-start; }
 }
+
+.hero-title-wrapper {
+  position: relative;
+  display: inline-flex;
+  align-items: center; /* Alinea verticalmente el título y el aviso */
+  gap: 25px; /* Espacio entre el título y el aviso */
+}
+
+.deadline-badge.tactical-hud {
+  /* Eliminamos posicionamiento absoluto anterior */
+  position: relative;
+  top: 0;
+  right: 0;
+  transform: rotate(0deg); /* Diseño recto y limpio */
+  
+  /* Estilo visual: Fondo oscuro sólido y borde afilado */
+  background: rgba(10, 14, 26, 0.95); /* Fondo casi negro táctico */
+  border: 1px solid var(--accent); /* Borde dorado nítido */
+  border-left: 4px solid var(--accent); /* Acento extra grueso a la izquierda */
+  
+  color: var(--white); /* Texto principal en blanco para contraste */
+  padding: 12px 20px;
+  
+  /* Tipografía nítida y condensada */
+  font-family: var(--font-cond);
+  font-size: 0.9rem;
+  font-weight: 700;
+  letter-spacing: 1.5px;
+  text-transform: uppercase;
+  
+  /* Bordes rectos (cero redondeado) estilo militar */
+  border-radius: 0px; 
+  
+  /* Flexbox interno para icono y texto */
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  
+  white-space: nowrap;
+  
+  /* Sombra sutil de neón/HUD */
+  box-shadow: 0 0 15px rgba(201, 168, 76, 0.3);
+}
+
+/* Color del icono SVG */
+.hud-icon {
+  color: var(--accent);
+  flex-shrink: 0;
+}
+
+/* Resaltado de la fecha exacta (el span que añadimos) */
+.highlight-date {
+  color: var(--accent);
+  font-weight: 800;
+  /* Pequeño efecto de brillo en la fecha */
+  text-shadow: 0 0 10px rgba(201, 168, 76, 0.5);
+}
+
+/* ── RESPONSIVO (Móvil) ── */
+@media (max-width: 1100px) {
+  .hero-title-wrapper {
+    flex-direction: column; /* Apila verticalmente en pantallas pequeñas */
+    gap: 15px;
+  }
+  
+  .deadline-badge.tactical-hud {
+    font-size: 0.8rem;
+    padding: 10px 16px;
+    border-left-width: 1px; /* Borde normal en móvil */
+    border-top: 3px solid var(--accent); /* Acento arriba en móvil */
+  }
+}
+
