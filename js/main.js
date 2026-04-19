@@ -285,7 +285,7 @@ const AVIONES_DATABASE = [
   // Suecia (moderno)
   { name: "JAS39E Gripen", country: "sweden" },
   { name: "JAS39D Gripen", country: "sweden" },
-  { name: "Saab F-35", country: "sweden" },
+  { name: "Saab F-35 Draken", country: "sweden" },
 
   // Italia (moderno)
   { name: "Eurofighter Typhoon (Italy)", country: "italy" },
