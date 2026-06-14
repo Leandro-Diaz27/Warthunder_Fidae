@@ -878,45 +878,79 @@ section {
     text-transform: uppercase;
     color: var(--white); /* Texto un poco más claro para que resalte */
 }
-/* ── APLICAR ── */
+/* ── ESTILOS COMPLETOS SECCIÓN APLICAR Y CONTADORES ── */
 .section-aplicar {
   background: linear-gradient(180deg, var(--dark) 0%, var(--black) 100%);
+  padding: 4rem 0;
 }
+
 .form-container {
-  max-width: 680px; margin: 0 auto;
+  max-width: 680px;
+  margin: 0 auto;
   position: relative;
 }
+
 .form-glow {
   position: absolute;
-  width: 300px; height: 300px;
-  background: radial-gradient(circle, rgba(201,168,76,0.12), transparent 70%);
-  top: -50px; left: 50%;
+  width: 300px;
+  height: 300px;
+  background: radial-gradient(circle, rgba(255, 183, 3, 0.06), transparent 70%);
+  top: -50px;
+  left: 50%;
   transform: translateX(-50%);
   pointer-events: none;
 }
+
 .apply-form {
   border: 1px solid var(--border2);
   background: var(--panel);
   padding: 3rem;
 }
-.form-row { margin-bottom: 1.5rem; }
+
+/* CONTENEDOR HUD DEL FORMULARIO */
+.form-hud-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 1rem;
+  background: rgba(0, 0, 0, 0.3);
+  border: 1px solid rgba(255, 255, 255, 0.05);
+  padding: 1rem 1.25rem;
+  margin-bottom: 2.5rem;
+  border-radius: 4px;
+}
+
+.form-row {
+  margin-bottom: 1.5rem;
+}
+
 .form-row.two-col {
-  display: grid; grid-template-columns: 1fr 1fr; gap: 1.5rem;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 1.5rem;
 }
+
 .form-group {
-  display: flex; flex-direction: column; gap: 0.5rem;
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
 }
+
 .form-group label {
   font-family: var(--font-cond);
-  font-size: 0.72rem; font-weight: 600;
-  letter-spacing: 0.15em; text-transform: uppercase;
-  color: var(--accent);
+  font-size: 0.75rem;
+  font-weight: 600;
+  letter-spacing: 0.15em;
+  text-transform: uppercase;
+  color: #ffffff;
 }
+
 .form-group input,
 .form-group select {
   background: var(--black);
   border: 1px solid var(--border2);
-  color: var(--white);
+  color: #ffffff;
   padding: 0.85rem 1rem;
   font-size: 0.9rem;
   outline: none;
@@ -924,59 +958,148 @@ section {
   width: 100%;
   -webkit-appearance: none;
 }
-.form-group input::placeholder { color: rgba(240,242,248,0.25); }
+
+.form-group input::placeholder {
+  color: rgba(240, 242, 248, 0.35);
+}
+
 .form-group input:focus,
 .form-group select:focus {
-  border-color: var(--accent);
+  border-color: #ffb703;
 }
-.select-wrap { position: relative; }
-.select-wrap svg {
-  position: absolute; right: 0.9rem; top: 50%;
-  transform: translateY(-50%);
-  width: 16px; height: 16px; color: var(--dim);
-  pointer-events: none;
+
+.select-wrap {
+  position: relative;
 }
+
 .form-error {
-  font-size: 0.72rem; color: var(--red);
-  font-family: var(--font-cond); letter-spacing: 0.05em;
+  font-size: 0.72rem;
+  color: var(--red);
+  font-family: var(--font-cond);
+  letter-spacing: 0.05em;
   min-height: 1rem;
 }
+
+/* COMPONENTE: CLASES GENERALES DEL CONTADOR HUD (HERO & FORM) */
+.deadline-badge.tactical-hud {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.6rem;
+  padding: 0.6rem 1.2rem;
+  background: rgba(255, 183, 3, 0.1);
+  border: 1px solid #ffb703;
+  color: #ffffff;
+  font-family: var(--font-cond), sans-serif;
+  font-size: 0.85rem;
+  font-weight: 700;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  border-radius: 2px;
+}
+
+/* Modificador en el Hero para que no colapse de forma extraña */
+.hero .deadline-badge.tactical-hud {
+  margin-top: 1.5rem;
+}
+
+.deadline-badge.tactical-hud .hud-icon {
+  color: #ffb703;
+}
+
+/* RELOJ DIGITAL MINI DEL HUD */
+.countdown-mini {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.2rem;
+  background: rgba(0, 0, 0, 0.5);
+  border: 1px solid rgba(255, 183, 3, 0.3);
+  padding: 0.25rem 0.6rem;
+  border-radius: 2px;
+  margin-left: 0.5rem;
+}
+
+.time-val {
+  font-family: var(--font-display), monospace;
+  font-size: 1.2rem;
+  font-weight: 700;
+  color: #ffb703;
+  text-shadow: 0 0 8px rgba(255, 183, 3, 0.3);
+}
+
+.time-lbl {
+  font-family: var(--font-cond), sans-serif;
+  font-size: 0.65rem;
+  color: rgba(255, 255, 255, 0.5);
+  text-transform: uppercase;
+  margin-right: 0.2rem;
+}
+
+.time-dot {
+  font-family: monospace;
+  font-size: 1rem;
+  color: #ffb703;
+  animation: hudBlink 1s infinite;
+}
+
+@keyframes hudBlink {
+  0%, 100% { opacity: 1; }
+  50% { opacity: 0.2; }
+}
+
+/* BOTÓN SUBMIT */
 .form-submit { margin-top: 2rem; }
+
 .btn-submit {
   width: 100%;
-  display: flex; align-items: center; justify-content: center; gap: 0.7rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.7rem;
   padding: 1.1rem;
-  background: var(--accent); color: var(--black);
-  font-family: var(--font-cond); font-weight: 700;
-  font-size: 0.9rem; letter-spacing: 0.15em; text-transform: uppercase;
-  transition: background 0.2s, transform 0.2s, box-shadow 0.2s;
+  background: #ffb703;
+  color: #000000;
+  border: none;
+  font-family: var(--font-cond);
+  font-weight: 700;
+  font-size: 0.9rem;
+  letter-spacing: 0.15em;
+  text-transform: uppercase;
+  transition: all 0.2s;
+  cursor: pointer;
 }
-.btn-submit svg { width: 18px; height: 18px; }
-.btn-submit:hover:not(:disabled) {
-  background: #deba68;
-  transform: translateY(-2px);
-  box-shadow: 0 8px 30px rgba(201,168,76,0.3);
-}
-.btn-submit:disabled { opacity: 0.6; cursor: not-allowed; }
-.form-success {
-  text-align: center;
-  padding: 3rem 2rem;
-}
-.success-icon {
-  width: 56px; height: 56px;
-  border: 1px solid rgba(76,168,201,0.4);
-  background: rgba(76,168,201,0.1);
-  color: var(--accent2);
-  display: flex; align-items: center; justify-content: center;
-  font-size: 1.4rem; margin: 0 auto 1.5rem;
-}
-.form-success h3 {
-  font-family: var(--font-display);
-  font-size: 1.8rem; margin-bottom: 0.8rem;
-  color: var(--white);
-}
-.form-success p { color: var(--dim); font-size: 0.9rem; }
 
+.btn-submit svg { width: 18px; height: 18px; }
+
+.btn-submit:hover:not(:disabled) {
+  background: #ffc93c;
+  transform: translateY(-2px);
+  box-shadow: 0 8px 30px rgba(255,183,7,0.3);
+}
+
+.btn-submit:disabled {
+  background: #222222;
+  color: #666666;
+  border: 1px solid #333333;
+  cursor: not-allowed;
+}
+
+/* Responsividad para móviles */
+@media (max-width: 580px) {
+  .form-hud-header {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+  .countdown-mini {
+    margin-left: 0;
+    width: 100%;
+    justify-content: center;
+  }
+  .deadline-badge.tactical-hud {
+    width: 100%;
+    justify-content: center;
+    flex-wrap: wrap;
+  }
+}
 /* ── FOOTER CON IMAGEN ── */
 .footer {
   position: relative; 

@@ -986,3 +986,47 @@ volumeSlider.addEventListener('input', (e) => {
 
 // Sincronizar volumen inicial
 bgMusic.volume = volumeSlider.value;
+
+function updateCountdown() {
+  const now = new Date();
+  
+  // Establecer la fecha objetivo: Hoy a las 23:59:59 (00:00 del día siguiente)
+  const target = new Date();
+  target.setHours(23, 59, 59, 999);
+
+  const difference = target - now;
+
+  if (difference <= 0) {
+    // Cuando el tiempo llega a cero
+    document.getElementById('hours').innerText = '00';
+    document.getElementById('minutes').innerText = '00';
+    document.getElementById('seconds').innerText = '00';
+    
+    // Cambiar textos y bloquear formulario
+    document.getElementById('badge-text').innerText = 'INSCRIPCIONES CERRADAS';
+    document.querySelector('.deadline-badge').style.borderColor = '#db4455';
+    document.querySelector('.deadline-badge').style.background = 'rgba(219,68,85,0.1)';
+    document.getElementById('btnSubmit').disabled = true;
+    document.getElementById('btnSubmit').innerText = 'CUPOS AGOTADOS';
+    
+    // Deshabilitar todos los inputs
+    document.querySelectorAll('.apply-form input, .apply-form select').forEach(input => {
+      input.disabled = true;
+    });
+    return;
+  }
+
+  // Cálculos de tiempo
+  const hours = Math.floor((difference / (1000 * 60 * 60)) % 24);
+  const minutes = Math.floor((difference / 1000 / 60) % 60);
+  const seconds = Math.floor((difference / 1000) % 60);
+
+  // Formatear con ceros a la izquierda (ej: 05 en vez de 5)
+  document.getElementById('hours').innerText = hours.toString().padStart(2, '0');
+  document.getElementById('minutes').innerText = minutes.toString().padStart(2, '0');
+  document.getElementById('seconds').innerText = seconds.toString().padStart(2, '0');
+}
+
+// Ejecutar cada segundo y al cargar la página
+setInterval(updateCountdown, 1000);
+updateCountdown();
